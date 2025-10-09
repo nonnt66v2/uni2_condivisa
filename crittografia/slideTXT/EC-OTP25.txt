@@ -1,0 +1,370 @@
+One-time Pad
+Paolo D’Arco
+pdarco@unisa.it
+Università di Salerno
+
+Elementi di Crittografia
+
+Paolo D’Arco (Unisa)
+
+One-time Pad
+
+EC-2025
+
+1 / 13
+
+Contenuti
+
+1
+
+Perfetta Indistinguibilità
+
+2
+
+One-time Pad
+
+Paolo D’Arco (Unisa)
+
+One-time Pad
+
+EC-2025
+
+2 / 13
+
+Esempio
+Esempio 2.7. Il cifrario di Vigenere, per certi parametri, non è
+perfettamente indistinguibile.
+Consideriamo un cifrario di Vigenere per uno spazio di messaggi M di
+stringhe di due caratteri, ed in cui la lunghezza della chiave (periodo) è
+scelta uniformemente in {1, 2}.
+eav = 1] > 1 .
+Mostreremo un Adv A per cui Pr [PrivKA,Π
+2
+
+Adv A
+1
+2
+
+Costruisce m0 = aa ed m1 = ab e li dà a C
+Dopo aver ricevuto dal challenger C il cifrato c = c1 c2
+se c1 = c2 dà in output b 0 = 0;
+altrimenti, dà in output b 0 = 1.
+
+Paolo D’Arco (Unisa)
+
+One-time Pad
+
+EC-2025
+
+3 / 13
+
+Esempio
+Calcoliamo la probabilità di successo di A.
+eav
+Pr [PrivKA,Π
+= 1]
+
+=
+=
+
+1
+1
+eav
+eav
+· Pr [PrivKA,Π
+= 1|b = 0] + · Pr [PrivKA,Π
+= 1|b = 1]
+2
+2
+1
+1
+· Pr [A dà 0|b = 0] + · Pr [A dà 1|b = 1]
+2
+2
+
+Valutiamo i due termini separatamente:
+Pr [A dà 0|b = 0] solo se
+viene scelta una chiave di lunghezza 1 (prob. 21 )
+viene scelta una chiave di lunghezza 2 (prob. 21 ) con due valori uguali
+1
+)
+(prob. 26
+Pertanto,
+Pr [A dà 0|b = 0] =
+
+Paolo D’Arco (Unisa)
+
+1 1 1
++ ·
+≈ 0.52.
+2 2 26
+
+One-time Pad
+
+EC-2025
+
+4 / 13
+
+Esempio
+D’altra parte, poichè Pr [A dà 0|b = 1] solo se
+viene scelta una chiave di lunghezza 2 (prob. 12 ) ed il primo valore vale
+1
+uno più del secondo (prob. 26
+)
+Pertanto,
+Pr [A dà 1|b = 1] = 1 − Pr [A dà 0|b = 1] = 1 −
+
+1 1
+·
+≈ 0.98.
+2 26
+
+Mettendo assieme le varie parti, risulta
+eav
+Pr [PrivKA,Π
+= 1] =
+
+=
+
+1
+1 1
+1 1 1 1
+· ( + · ) + · (1 − · )
+2 2 2 26
+2
+2 26
+1 1
+3
+1
+· ( + 1) = = 0.75 > 0.5 =
+2 2
+4
+2
+
+Quindi, lo schema non è perfettamente indistinguibile.
+Paolo D’Arco (Unisa)
+
+One-time Pad
+
+EC-2025
+
+5 / 13
+
+One-time Pad
+Brevettato da Vernam nel 1917. Circa 25 anni più tardi Shannon dimostrò
+che è perfettamente segreto.
+Costruzione 2.8
+Sia ` > 0 un intero. Siano M = K = C = {0, 1}` .
+Gen: sceglie k ∈ {0, 1}` uniformemente a caso
+Enc: dati k ∈ {0, 1}` ed m ∈ {0, 1}` , dà in output il cifrato
+c := k ⊕ m
+Dec: dati k ∈ {0, 1}` e c ∈ {0, 1}` , dà in output il messaggio
+m := k ⊕ c
+È facile verificare che:
+∀k, ∀m risulta Deck (Enck (m)) = (k ⊕ (k ⊕ m)) = m.
+Paolo D’Arco (Unisa)
+
+One-time Pad
+
+EC-2025
+
+6 / 13
+
+One-time Pad
+Teorema 2.9. Lo schema di cifratura one-time pad è perfettamente
+segreto.
+Dim. Prima di tutto, calcoliamo Pr [C = c|M = m0 ] per un arbitrario
+c ∈ C ed m0 ∈ M. Risulta:
+Pr [C = c|M = m0 ] = Pr [EncK (m0 ) = c]
+= Pr [m0 ⊕ K = c]
+= Pr [K = m0 ⊕ c] = 2−` ,
+poichè k è una chiave scelta uniformemente a caso in {0, 1}` .
+Per ogni c ∈ C , abbiamo:
+X
+Pr [C = c|M = m0 ] · Pr [M = m0 ]
+Pr [C = c] =
+m0 ∈M
+
+=
+
+X
+m0 ∈M
+−`
+
+= 2
+Paolo D’Arco (Unisa)
+
+2−` · Pr [M = m0 ] = 2−` ·
+
+X
+
+Pr [M = m0 ]
+
+m0 ∈M
+−`
+
+·1=2 ,
+One-time Pad
+
+EC-2025
+
+7 / 13
+
+One-time Pad
+
+dove la somma è calcolata su tutti gli m0 ∈ M tali che Pr [M = m0 ] > 0.
+Applicando allora il Teorema di Bayes, otteniamo:
+Pr [C = c|M = m] · Pr [M = m]
+Pr [C = c]
+−`
+2 · Pr [M = m]
+=
+2−`
+= Pr [M = m].
+
+Pr [M = m|C = c] =
+
+Pertanto, lo schema di cifratura one-time pad è perfettamente segreto.
+
+Paolo D’Arco (Unisa)
+
+One-time Pad
+
+EC-2025
+
+8 / 13
+
+Limitazioni della segretezza perfetta
+Si noti che, nello schema one-time pad
+la chiave è tanto lunga quanto il messaggio che si intende cifrare
+è sicuro per un uso soltanto
+per esempio, dati c = m ⊕ k e c 0 = m0 ⊕ k, risulta
+c ⊕ c 0 = (m ⊕ k) ⊕ (m0 ⊕ k) = m ⊕ m0 ,
+ovvero un Adv può calcolare la differenza tra i due messaggi (molta
+informazione)!
+
+L’esempio è sufficiente per dire che il one-time pad non è
+perfettamente segreto per qualsiasi nozione di segretezza perfetta per
+messaggi multipli.
+Purtroppo i limiti del one-time pad sono limiti intrinseci alla segretezza
+perfetta.
+Paolo D’Arco (Unisa)
+
+One-time Pad
+
+EC-2025
+
+9 / 13
+
+Limitazioni della segretezza perfetta
+Faremo vedere che ogni schema perfettamente segreto deve avere uno
+spazio delle chiavi almeno tanto grande quanto lo spazio dei messaggi.
+Da cui, discende che :
+se in uno schema perfettamente segreto tutte le chiavi sono della
+stessa lunghezza
+e se lo spazio dei messaggi consiste di tutte le stringhe di una data
+lunghezza
+⇓
+la chiave è almeno tanto lunga quanto il messaggio
+⇓
+lo schema di cifratura one-time pad è ottimale rispetto alla lunghezza della
+chiave.
+Paolo D’Arco (Unisa)
+
+One-time Pad
+
+EC-2025
+
+10 / 13
+
+Risultati di Shannon
+Teorema 2.10. Se (Gen, Enc, Dec) è uno schema di cifratura
+perfettamente segreto con spazio dei messaggi M e spazio delle chiavi K ,
+allora
+|K | ≥ |M|.
+Dim. Mostriamo che, se fosse |K | < |M|, lo schema non potrebbe essere
+perfettamente segreto. Sia |K | < |M|. Sia M distribuita uniformemente e
+sia c ∈ C tale che Pr [C = c] > 0. Definiamo
+def
+
+M(c) = {m|m = Deck (c), per qualche k ∈ K }.
+Chiaramente |M(c)| ≤ |K |. Se |K | < |M|, allora ∃m0 ∈ M tale che
+m0 ∈
+/ M(c). Ma allora risulta:
+Pr [M = m0 |C = c] = 0 6= Pr [M = m0 ] =
+
+1
+.
+|M|
+
+Pertanto lo schema non è perfettamente segreto. Quindi deve essere
+|K | ≥ |M|.
+Paolo D’Arco (Unisa)
+
+One-time Pad
+
+EC-2025
+
+11 / 13
+
+Teorema di Shannon
+
+È uno strumento utile per provare la segretezza perfetta di uno schema di
+cifratura.
+Teorema 2.11. Sia (Gen, Enc, Dec) uno schema di cifratura con spazio
+dei messaggi M per cui |M| = |K | = |C |. Lo schema è perfettamente
+segreto se e solo se:
+1
+2
+
+Gen sceglie ogni chiave k ∈ K con probabilità uguale a |K1 |
+per ogni m ∈ M ed ogni c ∈ C , esiste un’unica chiave k ∈ K tale che
+Enck (m) = c.
+
+Dim. Si consulti il libro di testo.
+
+Paolo D’Arco (Unisa)
+
+One-time Pad
+
+EC-2025
+
+12 / 13
+
+Domande
+Relativamente alla segretezza perfetta, che cosa possiamo dire di:
+1
+
+uno shift cipher usato per cifrare un messaggio di un solo carattere?
+
+2
+
+un cifrario di Vigenere di periodo t per cifrare un solo messaggio di
+lunghezza t?
+
+3
+
+un one-time pad in cui, invece dell’ xor (che è una somma mod 2 sulle
+cifre 0 e 1), il messaggio è una sequenza di cifre decimali, la chiave è
+una sequenza di cifre decimali tanto lunga quanto il messaggio e
+l’operazione è la somma mod 10?
+
+4
+
+un one-time pad in cui messaggio e chiave sono della stessa lunghezza,
+sono costituiti di caratteri appartenenti ad un alfabeto di taglia m e
+l’operazione è la somma modulo m?
+
+5
+
+se rappresentassimo con un grafo il one-time pad, che tipo di grafo
+otterremmo?
+Paolo D’Arco (Unisa)
+
+One-time Pad
+
+EC-2025
+
+13 / 13
+
+

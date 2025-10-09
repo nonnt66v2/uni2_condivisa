@@ -1,0 +1,568 @@
+Elementi di Crittografia
+A.A. 2025-2026
+Prof. Paolo D’Arco
+
+Introduzione
+
+Crittografia / Crittologia
+Due parole greche:
+Kryptos che significa “nascosto”
+Graphìa che significa “scrittura” / Logos che significa “discorso”
+
+Introduzione
+Dal vocabolario Treccani:
+
+“Crittografia: l’insieme delle teorie e delle tecniche (manuali,
+meccaniche o elettroniche) che permettono di cifrare un testo
+in chiaro …”
+Dal Concise Oxford English Dictionary:
+
+“Cryptography: the art of writing or solving codes”
+Definizioni storicamente corrette ma … non catturano
+l’ampiezza attuale!
+
+Attività umane
+• Conversare privatamente
+• Avere un diario segreto
+• Prelevare soldi dal conto
+• Votare alle elezioni
+• Partecipare ad un’asta
+• Giocare a poker
+• Effettuare compravendite
+…
+
+Attività umane
+Dispositivi fisici e parti fidate
+• Conversare privatamente
+
+•
+
+Ambienti riservati/protetti
+
+• Avere un diario segreto
+
+•
+
+Lucchetti e casseforti
+
+• Prelevare soldi dal conto
+
+•
+
+Bancomat, carta, pin
+
+• Votare alle elezioni
+
+•
+
+Cabine e schede elettorali
+
+• Partecipare ad un’asta
+
+•
+
+Buste oscuranti
+
+• Giocare a poker
+
+•
+
+Carte da gioco
+
+• Effettuare compravendite
+
+•
+
+Notai e ufficiali riconosciuti
+
+…
+
+Fiducia
+
+Mondo digitale: “chiedere la luna …”
+Vogliamo riprodurre le stesse attività, ma gli unici oggetti di
+cui disponiamo sono sequenze di bit, che possono essere
+elaborate e trasmesse su reti di computer!
+La crittografia moderna rende possibile tutto ciò
+senza ricorso ad alcun dispositivo fisico e
+riducendo al minimo l’uso di parti fidate
+
+Crittografia moderna
+“Lo studio delle tecniche matematiche utili a proteggere
+l’informazione digitale, i sistemi di elaborazione e le
+computazioni distribuite da attacchi avversari”
+
+Strumento per corroborare la fiducia nei processi che
+abbiamo riprodotto o creato ex-novo nel mondo digitale
+
+Scopo del corso
+Presentare i principi e le tecniche alla base della Crittografia
+Moderna.
+Al termine dovreste essere in grado di:
+• apprezzare le garanzie che le primitive crittografiche offrono in termini di
+sicurezza
+• conoscere ed avere una discreta familiarità con le costruzioni standard
+• effettuare valutazioni di base di primitive e protocolli crittografici
+
+Approccio: studio rigoroso e strutturato
+
+Libri di testo
+J. Katz and J. Lindell, Introduction to Modern Cryptography, revised 3-rd Edition.
+CRC Press, 2025
+
+Riferimento principale … più letture di approfondimento consigliate
+
+Libri di testo
+
+D.R. Stinson and M.B. Paterson,
+Cryptography: Theory and Practice,
+CRC Press, 2018
+
+Approccio più tradizionale, con capitoli su
+tecniche avanzate (e.g. post-quantum crypto).
+
+Confidenzialità …
+Dal vocabolario Treccani:
+
+“Crittografia: l’insieme delle teorie e delle tecniche (manuali,
+meccaniche o elettroniche) che permettono di cifrare un testo
+in chiaro …”
+Dal Concise Oxford English Dictionary:
+
+“Cryptography: the art of writing or solving codes”
+Definizioni storicamente corrette ma … non catturano
+l’ampiezza attuale!
+
+Introduzione: oltre la “confidenzialità”
+• Meccanismi per assicurare l’integrità dei dati
+• esser certi che i dati trasmessi o memorizzati non siano stati
+modificati
+
+• Meccanismi per assicurare l’autenticità dei dati e delle
+parti che entrano in gioco in un protocollo
+• esser certi che i dati che abbiamo necessità di elaborare siano
+prodotti dall’ente/persona che supponiamo sia l’origine dei dati
+stessi
+• esser certi che la parte con cui stiamo comunicando sia quella
+giusta e non un impostore
+
+e, ancora …
+
+Introduzione: oltre la “confidenzialità”
+• Protocolli per lo scambio sicuro di chiavi crittografiche tra
+persone che non si sono mai incontrate in precedenza
+• Protocolli per funzionalità generali e funzionalità
+
+specifiche:
+• Schemi per la condivisione di segreti
+• Sistemi di prova a conoscenza zero
+• Calcolo sicuro di funzioni multi-party (n variabili – n parti)
+• Elezioni elettroniche
+• Giochi on-line
+• Denaro digitale
+• Database distribuiti di transazioni autenticate … e molto altro!
+
+Crittografia moderna
+
+• Tra gli anni 80’ e 90’: transizione da “arte” a “scienza”
+
+Natura della transizione
+
+Insieme di
+strumenti euristici
+che garantiscono
+comunicazioni
+segrete a militari e
+diplomatici
+
+Scienza che aiuta a
+proteggere i
+sistemi digitali usati
+da persone
+ordinarie sparse su
+tutto il globo
+terrestre
+
+Crittografia Classica
+• Permette di introdurre facilmente alcuni concetti di base
+• Ci serve per motivare l’approccio più rigoroso che applicheremo nel seguito
+Obiettivo classico: progetto ed uso di codici (anche detti cifrari)
+“due parti comunicano segretamente in presenza di un ascoltatore che può
+monitorare tutte le comunicazioni tra di loro”
+Codici, in termini moderni: schemi di cifratura
+
+Schemi di cifratura
+
+Basato sulla segretezza della chiave condivisa dalle due parti comunicanti
+
+Schemi di cifratura
+A chiave simmetrica (symmetric key setting) = stessa chiave per cifrare e decifrare
+A chiave asimmetrica (asymmetric key setting / public key setting) = chiavi diverse
+
+Due applicazioni canoniche per lo scenario a chiave simmetrica:
+• le parti sono separate “nello spazio”
+• una parte comunica con se stessa “nel tempo”
+Sintassi che useremo per riferirci agli oggetti di uno schema:
+M :
+C
+:
+Gen :
+Enc :
+Dec :
+
+spazio dei messaggi leciti
+spazio dei cifrati possibili
+algoritmo per generare le chiavi
+algoritmo di cifratura
+algoritmo di decifratura
+
+Chiavi e principio di Kerckhoffs
+Osservazione: un avversario, disponendo della chiave K e Dec, decifra!
+Pertanto, la chiave deve essere segreta. E circa l’algoritmo Dec di decifratura?
+August Kerckhoffs, fine 19esimo secolo
+“Il metodo di cifratura non è richiesto che sia segreto e dovrebbe essere in grado di cadere
+nelle mani del nemico senza creare problemi.”
+
+La sicurezza non dovrebbe basarsi sulla segretezza degli algoritmi di cifratura, ma
+soltanto sulla segretezza della chiave.
+
+Perché?
+Argomenti a favore del principio di Kerckhoffs:
+
+• è più facile per le parti proteggere solo K
+• è più facile cambiare una chiave che un intero schema
+• è più facile lo sviluppo su larga scala se gli utenti possono usare gli stessi
+algoritmi
+• rende possibile la standardizzazione, che è utile per garantire
+compatibilità ed il pubblico scrutinio
+Oggi il principio di Kerckhoffs è universalmente accettato e la pratica della
+cosiddetta “security by obscurity” – che poggia sulla segretezza anche dei
+metodi - sempre più desueta.
+
+Nota: Kerckhoff e la Cybersecurity
+
+Terminologia introdotta dalla letteratura (Science-fiction)
+Cyberspace – termine introdotto nel romanzo Burning Chrome di William Gibson
+del 1982 per denotare reti interconnesse di computer, dispositivi e persone
+Cyberpunk – titolo del romanzo di Bruce Bethke del 1983, usato per denotare
+individui “socialmente inetti” ma con capacità tecnologiche notevoli
+Cyberattack, cybercrime, cyberwar, cyberterrorism …et cetera
+Il principio di Kerckhoff si applica anche nell’area più ampia della cosiddetta
+cybersecurity.
+
+Schemi “storici”
+Consideriamo ora alcuni cifrari al fine di:
+• mostrare le debolezze di un approccio “ad hoc”, motivando l’importanza
+dell’approccio moderno strutturato
+• rendere chiaro che approcci semplicistici difficilmente hanno successo
+
+Cifrario di Cesare
+“De Vita Caesarum”, 110 a. C.
+Cifratura: ogni lettera del messaggio in chiaro viene sostituita dalla lettera che si trova
+3 posti in avanti nell’alfabeto
+A
+
+D,
+
+B
+
+E, C
+
+F,
+
+…, Z
+
+C
+
+Decifratura: operazione inversa (lettera che precede di 3 posti)
+Osservazioni: lo schema di cifratura è fisso. Non c’è chiave segreta!
+• una variante – ROT 13 – è usata ancora oggi in alcuni forum on-line per
+disturbare chi vuole capire al volo cosa le parti si dicono
+• invece di 3, i posti in avanti sono 13
+Il cifrario di Cesare è un caso particolare dello Shift Cipher
+
+Shift cipher
+Alfabeto Inglese mappato su {0, 1, 2, …, 25}
+a, b, c, …, z
+Messaggio m = m1m2…mn, con mi in {0,1, 2, …, 25}
+
+EncK(m1m2…mn) = c1c2…cn, con ci = [(mi + k) mod 26] per i=1, …, n
+dove [a mod N] denota il resto della divisione per N e risulta 0 <= [a mod N] < N
+L’associazione di [a mod N] ad a prende il nome di “riduzione modulo N”.
+
+DecK(c1c2…cn) = m1m2…mn, con mi = [(ci - k) mod 26] per i=1, …, n
+È sicuro lo Shift cipher?
+
+Ricerca esaustiva
+Dato un cifrato, ci sono soltanto 26 possibili chiavi. Basta provarle tutte!
+Un attacco che richiede di provare ogni possibile chiave viene detto un attacco per
+ricerca esaustiva o anche di forza bruta.
+Condizione necessaria (ma non sufficiente) affinché un cifrario sia sicuro è che lo
+spazio delle chiavi sia sufficientemente grande (sufficient key-space principle)
+“Qualsiasi schema di cifratura sicuro deve avere uno spazio delle chiavi sufficientemente
+grande da rendere un attacco per ricerca esaustiva impraticabile.”
+Tipicamente deve contenere almeno 280 elementi al giorno d’oggi.
+
+Cifrari per sostituzione monoalfabetica
+“Shift cipher”
+
+l’associazione carattere in chiaro/carattere cifrato è uno
+spostamento fissato
+
+“Mono-alfabetico”
+
+associazione arbitraria
+
+Spazio delle chiavi =
+
+{ tutte le possibili permutazioni dell’alfabeto}
+alfabeto in chiaro
+
+alfabeto cifrante
+
+Cifrari per sostituzione monoalfabetica
+Messaggio in chiaro = tell him about me
+Messaggio cifrato = GDOO KVC XEFLG CD
+
+Sostituzione monoalfabetica
+
+tellhimaboutme
+GDOOKVCXEFLGCD
+
+La chiave specifica una sostituzione
+FISSA per ogni carattere del
+messaggio in chiaro
+Lo stesso carattere viene cifrato
+sempre allo stesso modo
+
+| Spazio delle chiavi | = 26! = 262524  … 21 ≈ 288
+Un attacco di forza bruta è impraticabile! Sfortunatamente, non è sufficiente …
+
+Analisi delle frequenze
+Il cifrario è facile da “rompere”.
+Supponiamo che il messaggio in chiaro sia testo inglese corretto. Il cifrario può essere
+attaccato usando caratteristiche statistiche della lingua inglese.
+L’attacco si basa su due elementi:
+1. Per ogni chiave, l’associazione di ciascuna lettera è fissa, per cui se “D” viene
+associata ad “e”, allora ogni occorrenza di “e” nel messaggio in chiaro diventa “D”
+nel cifrato
+2. La distribuzione delle frequenze delle lettere dell’alfabeto inglese è nota.
+
+Frequenze delle lettere dell’Inglese
+
+Frequenze in lingue diverse
+
+Attacco tramite analisi delle frequenze
+L’attacco opera tabulando le frequenze dei caratteri presenti nel cifrato.
+Queste frequenze sono poi comparate alle frequenze dell’Inglese
+In questo modo:
+• parte dell’associazione può essere inferita
+• ipotesi corrette ed altre conoscenze della lingua inglese possono
+aiutare a ricostruirla (e.g., dipendenze tipo “the”, “qu”, etc)
+Conclusione: spazio delle chiavi grande ma … cifrario debole!
+
+Provate!
+Per rendervi conto dell’applicabilità dell’attacco e del suo funzionamento, provate a
+decifrare l’esempio che segue (usando la tabella delle frequenze dell’Inglese)
+
+JGRMQOYGHMVBJWRWQFPWHGFFDQGFPFZRKBEEBJIZQQOCIBZKLFAFGQVFZFWWE
+OGWOPFGFHWOLPHLRLOLFDMFGQWBLWBWQOLKFWBYLBLYLFSFLJGRMQBOLWJVFP
+FWQVHQWFFPQOQVFPQOCFPOGFWFJIGFQVHLHLROQVFGWJVFPFOLFHGQVQVFILE
+OGQILHQFQGIQVVOSFAFGBWQVHQWIJVWJVFPFWHGFIWIHZZRQGBABHZQOCGFHX
+
+Shift cipher: un attacco più efficiente
+Usiamo la distribuzione delle frequenze per calcolare la chiave segreta.
+Sia 0 ≤ pi ≤ 1 la frequenza della i-esima lettera dell’alfabeto inglese.
+Risulta:
+
+$%
+
+! 𝑝!$ ≈ 0.065
+!"#
+
+Si consideri il cifrato dato.
+Sia 0 ≤ qi ≤ 1 la frequenza della i-esima lettera dell’alfabeto inglese nel cifrato, cioè:
+0 ≤ qi = (num. di occorrenze i-esima lettera nel cifrato / lungh. cifrato) ≤ 1
+Se la chiave segreta scelta è k, allora si ha che:
+
+Shift cipher: un attacco più efficiente
+pi
+
+qi+k
+
+i-esima lettera
+
+per tutti gli indici i=0, …, 25
+
+(i+k)-esima lettera nel cifrato
+
+sostituita con
+Per ogni valore di j = 0, 1, …, 25, calcoliamo
+
+Ci aspettiamo:
+
+𝐼! ≈ 0.065
+sostanzialmente diverso da 0.065
+
+Shift cipher: un attacco più efficiente
+L’attacco restituisce come ipotesi per k il valore di j per cui Ij è più vicino a 0.065
+Osservazioni sull’attacco:
+• è efficiente
+• è facile da automatizzare
+• non è richiesta alcuna “analisi del significato” (attacco precedente manuale)
+
+Il cifrario di Vigenère
+Realizza uno “shift poli-alfabetico”
+Osservazioni:
+• gli attacchi statistici contro i cifrari mono-alfabetici sono possibili poiché la chiave
+definisce un’associazione FISSA, lettera per lettera, da applicare al testo in chiaro
+• nei cifrari poli-alfabetici la chiave definisce una sostituzione da applicare a blocchi di
+caratteri del messaggio in chiaro
+e.g., ab
+
+DZ,
+
+ac
+
+TY
+
+non è associata ad un singolo
+carattere nel cifrato
+
+In questo modo essenzialmente
+la distribuzione delle frequenze
+viene “appianata”
+
+Il cifrario di Vigenère
+Il cifrario di Vigenere usa semplicemente “più istanze indipendenti dello shift
+cipher”.
+chiave
+
+stringa di caratteri
+
+Ricordo che:
+caratteri = numeri
+shift = + mod 26
+
+shift cipher con chiave “e”: 4°, 8°, 12°, …
+shift cipher con chiave “f”: 3°, 7°, 11°, …
+shift cipher con chiave “a”: 2°, 6°, 10°, …
+shift cipher con chiave “c”: 1°, 5°, 9°, …
+
+Il cifrario di Vigenère
+Se la chiave è sufficientemente lunga, rompere il cifrario sembra impresa ostica.
+È stato ritenuto inattaccabile per centinaia di anni.
+
+Rompere il cifrario di Vigenère
+Per iniziare, si assuma che la lunghezza (detta periodo) della chiave k sia nota.
+Sia k = k1k2…kt, dove kj è un carattere della chiave.
+Si divida il cifrato c = c1c2… in t parti. Precisamente, per j=1, …, t
+cj, cj+t, cj+2t, …
+parte cifrata con lo
+shift cipher avente chiave kj
+Si calcoli la chiave kj, per j=1,…,t, usando l’attacco efficiente contro lo shift
+cipher descritto in precedenza.
+
+Test di Kasiski
+Facile, vero? E se invece la lunghezza della chiave non è nota? Che si fa?
+1. Se è noto un massimo per la lunghezza, potremmo tentare tutte le
+ipotesi, una per una, i.e., t=1, t=2, t=3, …
+2. Usare il metodo di Kasiski
+• cerca di individuare “pattern ripetuti”
+
+due volte
+
+Test di Kasiski
+La distanza tra i pattern ripetuti, assumendo che non sia un evento accidentale,
+deve essere un multiplo del periodo della chiave
+Il massimo comune divisore delle distanze tra i pattern ripetuti restituirà il
+periodo (o un multiplo di esso)
+
+limite superiore al periodo
+
+Tuttavia, esiste un altro approccio al calcolo del periodo, maggiormente
+strutturato e facile da automatizzare.
+È il metodo dell’indice di coincidenza.
+
+Indice di coincidenza
+Se il periodo del cifrato c = c1c2… è t, allora
+
+c1, c1+t, c1+2t, c1+3t, …
+è la prima sequenza che risulta dalla cifratura ottenuta usando il “primo shift cipher”.
+Come già osservato
+
+le frequenze dei caratteri
+in questa sequenza
+
+identiche a
+
+pi
+
+le frequenze dei caratteri
+dell’Inglese in qualche
+ordine shiftato
+
+qi+j
+se lo shift usato è j
+
+Indice di coincidenza
+Ciò significa che q0q1…q25 è semplicemente p0p1…p25 “shiftata” di j posizioni.
+Pertanto, risulta
+$%
+
+$%
+
+! 𝑞!$ ≈ ! 𝑝!$ ≈ 0.065
+!"#
+
+!"#
+
+Disponiamo, quindi, di un modo elegante per determinare la lunghezza t della chiave.
+Per w=1,2,3, … consideriamo la sequenza
+
+c1, c1+w, c1+2w, c1+3w…
+e calcoliamo i valori q0q1…q25, e il valore
+
+%&
+
+𝑆 𝑤 = ) 𝑞𝑖 2
+"#$
+
+Indice di coincidenza
+Ci aspettiamo che, quando w = t, risulta Sw ≈0.065.
+D’altra parte, se w ≠ t, i caratteri c1, c1+w, c1+2w, c1+3w… sono presenti
+approssimativamente con la stessa frequenza, vicina a quella uniforme.
+Vale a dire, qi ≈ 1/26, per i = 0, …, 25. Da cui risulta
+$%
+
+$%
+
+!"#
+
+!"#
+
+$
+1
+𝑆& = ! 𝑞!$ ≈ !
+≈ 0.038
+26
+
+Pertanto, il valore più piccolo di w per cui Sw ≈ 0.065 è verosimilmente il
+periodo (lunghezza della chiave).
+Una seconda sequenza c2, c2+w, c2+2w, c2+3w… può essere usata per
+confermare l’ipotesi
+
+Conclusioni
+• l’attacco è elegante ed efficiente
+• richiede un cifrato lungo per la stima delle frequenze
+• una chiave più lunga implica la necessità di un cifrato più lungo
+
+Progettare cifrari sicuri non è impresa facile!
+
+Team di supporto al corso
+} Link al team: Elementi di Crittografia 2025
+
+Elementi di Crittografia - 2025 | General | Microsoft Teams
+} Codice di accesso: vrf9f83
+
+

@@ -1,0 +1,603 @@
+Schemi computazionalmente sicuri
+Paolo D’Arco
+pdarco@unisa.it
+Università di Salerno
+
+Elementi di Crittografia
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+1 / 26
+
+Contenuti
+
+1
+
+Schemi di cifratura computazionalmente sicuri
+
+2
+
+Indistinguibilità
+
+3
+
+Sicurezza Semantica
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+2 / 26
+
+Schemi di cifratura computazionalmente sicuri
+Definizione 3.7. Uno schema di cifratura a chiave privata è una tripla
+Π = (Gen, Enc, Dec) di algoritmi PPT tale che
+1
+
+k ← Gen(1n ), algoritmo probabilistico di generazione della chiave k
+- dove la chiave k ∈ K è tale che |k| ≥ n
+
+2
+
+c ← Enck (m), algoritmo probabilistico di cifratura
+- dove il messaggio m ∈ {0, 1}∗ , la chiave k ∈ K e il cifrato c ∈ {0, 1}∗
+
+3
+
+m := Deck (c), algoritmo deterministico di decifratura
+- dove il cifrato c ∈ {0, 1}∗ , la chiave k ∈ K e il messaggio m ∈ {0, 1}∗
+- Dec(c) restituisce ⊥ in caso di errore
+
+Correttezza. Per ogni n, per ogni k restituito da Gen(1n ) e per ogni
+m ∈ {0, 1}∗ , risulta
+Deck (Enck (m)) = m
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+3 / 26
+
+Schemi di cifratura computazionalmente sicuri
+
+Note e osservazioni:
+se lo spazio dei messaggi è {0, 1}`(n) , allora Π è uno schema di
+cifratura a chiave privata a lunghezza fissa, per messaggi di lunghezza
+`(n).
+solitamente Gen(1n ) restituisce stringhe di n bit scelte uniformemente
+a caso
+la definizione è senza stato (occasionalmente considereremo schemi
+con stato)
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+4 / 26
+
+Schemi di cifratura computazionalmente sicuri
+
+Definizione di sicurezza di base:
+1
+
+Modello delle minacce. Adv è PPT. Osserva un singolo cifrato
+ottenuto usando una certa chiave. Può applicare qualsiasi strategia
+d’attacco.
+
+2
+
+Garanzie di sicurezza. Adv non deve essere in grado di acquisire
+alcuna informazione aggiuntiva sul messaggio in chiaro m a partire dal
+cifrato c.
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+5 / 26
+
+Sicurezza semantica ed indistinguibilità
+
+La nozione di sicurezza semantica formalizza ciò.
+⇓
+È difficile da maneggiare
+⇓
+Esiste una definizione equivalente più semplice
+⇓
+È la nozione di Indistinguibilità
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+6 / 26
+
+Indistinguibilità
+Nel contesto della segretezza perfetta abbiamo considerato l’esperimento
+eav
+PrivKA,Π
+eav
+PrivKA,Π
+1
+
+m0 , m1 ← A (sceglie due messaggi)
+
+2
+
+il challenger calcola c ← Enck (mb ), dove b ← {0, 1} e
+k ← Gen(1n )
+
+3
+
+A riceve c e dà in output b 0 ∈ {0, 1}
+
+4
+
+Se b = b 0 , l’output dell’esperimento è 1 (A vince); altrimenti, 0.
+
+Lo schema Π è sicuro se A vince con probabilità 1/2, i.e., non c’è strategia
+migliore per indovinare che scegliendo a caso. È equivalente alla condizione
+di segretezza perfetta.
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+7 / 26
+
+Indistinguibilità
+Nel caso computazionale:
+A è PPT
+A può vincere con probabilità trascurabilmente migliore di 1/2
+L’esperimento dipende da n, il parametro di sicurezza
+eav (n)
+PrivKA,Π
+1
+2
+
+3
+4
+
+A ottiene 1n e dà in output m0 , m1 tali che |m0 | = |m1 |
+il challenger calcola c ← Enck (mb ), dove b ← {0, 1} e
+k ← Gen(1n )
+A(1n ) riceve c e dà in output b 0 ∈ {0, 1}
+Se b = b 0 , l’output dell’esperimento è 1 (A(1n ) vince);
+altrimenti, 0.
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+8 / 26
+
+Indistinguibilità
+Definizione 3.8. Uno schema di cifratura a chiave privata
+Π = (Gen, Enc, Dec) ha cifrature indistinguibili in presenza di un avversario
+che ascolta (eavesdropper) o è EAV-sicuro se, per ogni Adv A PPT, esiste
+una funzione trascurabile negl tale che:
+eav
+Pr [PrivKA,Π
+(n) = 1] ≤
+
+1
++ negl(n),
+2
+
+dove la probabilità è calcolata su
+randomness usata da A
+randomness usata nell’esperimento
+scelta della chiave
+scelta del bit b
+random bit usati da Enck (·)
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+9 / 26
+
+Indistinguibilità
+Nota: qualsiasi schema di cifratura perfettamente segreto ha cifrature
+indistinguibili in presenza di un eavesdropper.
+Faremo vedere che esistono schemi con "chiavi più corte"
+Esiste una formulazione equivalente: l’idea di fondo è che ogni Adv PPT si
+comporta allo stesso modo sia che veda una cifratura di m0 che di m1
+eav (n, b) con b ∈ {0, 1} e l’output di A con
+Definendo PrivKA,Π
+eav (n, b)), diamo la seguente
+outA (PrivKA,Π
+
+Definizione 3.9. Π = (Gen, Enc, Dec) è EAV-sicuro se, per ogni Adv A
+PPT, esiste una funzione trascurabile negl tale che, per tutti gli n si ha:
+eav
+eav
+|Pr [outA (PrivKA,Π
+(n, 0)) = 1] − Pr [outA (PrivKA,Π
+(n, 1)) = 1]| ≤ negl(n).
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+10 / 26
+
+Indistinguibilità
+
+Nota: nella definizione non richiediamo ad uno schema di nascondere la
+lunghezza del messaggio da cifrare. Nei casi in cui questa informazione è
+importante occorre porre rimedio (e.g., estendendo i messaggi ad una
+lunghezza fissa)
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+11 / 26
+
+Indistinguibilità e intuizione
+
+Il concetto di indistinguibilità ricorda il concetto di travestimento. E le
+proprietà che desideriamo sono all’incirca le seguenti:
+Due persone travestite sono indistinguibili: una modella bellissima e
+l’uomo più brutto del mondo, travestiti, non possono essere distinti
+Ma le due persone devono essere della stessa altezza: altrimenti è
+immediato distinguere un gigante da un nano
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+12 / 26
+
+Sicurezza Semantica
+
+Dovrebbe essere impraticabile per un Adv acquisire alcuna informazione
+aggiuntiva sul messaggio in chiaro dal cifrato.
+Cominciamo con due nozioni più deboli:
+1
+
+il cifrato non rivela alcuna informazione sui singoli bit del messaggio in
+chiaro
+
+2
+
+il cifrato non aiuta un Adv PPT nel calcolo di qualsiasi funzione del
+messaggio in chiaro
+
+Proveremo che la nozione di indistinguibilità implica 1. e 2.
+Notazione: solitamente Gen genera chiavi distribuite uniformemente a caso.
+Quando assumeremo ciò, useremo per semplicità Π = (Enc, Dec)
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+13 / 26
+
+Sicurezza Semantica
+
+Teorema 3.10. Sia Π = (Enc, Dec) uno schema di cifratura a chiave
+privata per messaggi di lunghezza ` EAV-sicuro. Allora, per ogni Adv A
+PPT ed ogni i ∈ {1, . . . , `}, esiste una funzione trascurabile negl tale che:
+Pr [A(1n , Enck (m)) = mi ] ≤
+
+1
++ negl(n),
+2
+
+dove la probabilità è calcolata su
+scelta uniforme di m ∈ {0, 1}`
+scelta uniforme di k ∈ {0, 1}n
+random bit usati da A
+random bit usati da Enck (·)
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+14 / 26
+
+Sicurezza Semantica
+
+Dim. Idea: se fosse possibile, con probabilità non trascurabile, calcolare
+l’i-esimo bit mi
+⇓
+sarebbe anche possibile, con probabilità non trascurabile, distinguere m0 da
+m1 che differiscono nell’i-esimo bit.
+Useremo una dimostrazione per riduzione (... ci torneremo su a breve).
+Fissiamo un Adv arbitrario A PPT ed i ∈ {1, . . . , `}.
+Vogliamo usare A (e la sua capacità di calcolare mi con prob. non
+trascurabile) per costruire un Adv A0 che usa A per distinguere con prob.
+non trascurabile m0 da m1 che differiscono nell’i-esimo bit.
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+15 / 26
+
+Sicurezza Semantica: sketch grafico
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+16 / 26
+
+Sicurezza Semantica
+
+Siano:
+I0 ⊂ {0, 1}` insieme di stringhe con i-esimo bit uguale a 0
+I1 ⊂ {0, 1}` insieme di stringhe con i-esimo bit uguale a 1
+Essendo |I0 | = |I1 | = 2`−1 ed m scelto in modo uniforme, risulta
+Pr [A(1n , Enck (m)) = mi ]
+
+= Pr [m ∈ I0 ] · Pr [A(1n , Enck (m)) = 0|m ∈ I0 ]
++Pr [m ∈ I1 ] · Pr [A(1n , Enck (m)) = 1|m ∈ I1 ]
+
+= 12 · Pr [A(1n , Enck (m0 )) = 0] + 12 · Pr [A(1n , Enck (m1 )) = 1]
+
+Costruiamo A0 come segue:
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+17 / 26
+
+Sicurezza Semantica
+
+Adv A0
+1
+
+sceglie uniformemente m0 ∈ I0 e m1 ∈ I1 e li passa al challenger
+
+2
+
+dopo aver ricevuto c dal challenger, invoca A(1n , c)
+
+3
+
+Se A dà in output 0, allora dà in output b 0 = 0; altrimenti,
+b 0 = 1.
+
+i
+A0 gioca nell’esperimento PrivKAeav
+0 ,Π (n) e usa A, che calcola m , come
+subroutine.
+
+A0 è PPT poichè A è PPT e fa poco più che invocare A.
+0
+Dalla definizione di PrivKAeav
+0 ,Π (n), A ha successo se e solo se A restituisce b
+dopo aver ricevuto Enck (mb ). Pertanto, risulta:
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+18 / 26
+
+Sicurezza Semantica
+Pr [PrivKAeav
+0 ,Π (n) = 1]
+
+= Pr [A(1n , Enck (mb )) = b]
+(dato che b viene scelto uniform. nell’esperimento)
+
+1
+1
+· Pr [A(1n , Enck (m0 )) = 0] + · Pr [A(1n , Enck (m1 )) = 1]
+2
+2
+= Pr [A(1n , Enck (m)) = mi ]
+
+=
+
+Poichè abbiamo assunto che Π = (Enc, Dec) è EAV-sicuro, esiste una
+funzione trascurabile negl tale che
+Pr [PrivKAeav
+0 ,Π (n) = 1] ≤ 1/2 + negl(n)
+⇓
+Pr [A(1n , Enck (m)) = mi ] ≤ 1/2 + negl(n).
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+19 / 26
+
+Sicurezza Semantica
+
+Circa il punto 2., mostreremo che:
+un Adv A che calcola f (m) con una certa probabilità quando riceve
+Enck (m)
+⇓
+un Adv A0 che calcola f (m) con la stessa probabilità, senza conoscere
+Enck (m).
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+20 / 26
+
+Sicurezza Semantica
+Teorema 3.11. Sia Π = (Enc, Dec) uno schema di cifratura a chiave
+privata per messaggi di lunghezza ` EAV-sicuro. Allora, per ogni Adv A
+PPT, esiste un Adv A0 PPT tale che, per ogni distr. di prob. D su {0, 1}`
+ed ogni f : {0, 1}` → {0, 1} esiste una funzione trascurabile negl tale che:
+|Pr [A(1n , Enck (m)) = f (m)] − Pr [A0 (1n ) = f (m)]| ≤ negl(n),
+dove la prima probabilità è calcolata su
+scelta di m in accordo a D e uniforme di k ∈ {0, 1}n
+random bit usati da A
+random bit usati da Enck (·)
+e la seconda su
+scelta di m in accordo a D e uniforme dei random bit usati da A0
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+21 / 26
+
+Sicurezza Semantica
+Dim. (Sketch) Poichè Π è EAV-sicuro, per ogni distribuzione D, nessun
+Adv PPT può distinguere tra Enck (m) ed Enck (1` )
+Consideriamo la probabilità con cui A calcola f (m) data Enck (m).
+A dovrebbe calcolare f (m) data Enck (1` ) con ≈ la stessa probabilità.
+Altrimenti A potrebbe essere usato per distinguere tra Enck (m) ed
+Enck (1` ).
+Distinguisher
+1
+
+2
+3
+
+sceglie m in accordo a D e passa al challenger m0 = m e
+m 1 = 1`
+dopo aver ricevuto c dal challenger, invoca A(1n , c)
+Se A dà in output f (m), allora dà in output b 0 = 0; altrimenti,
+b 0 = 1.
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+22 / 26
+
+Sicurezza Semantica
+Se A dà in output f (m) con una probabilità significativamente migliore nel
+caso in cui riceve Enck (m) rispetto a quando riceve Enck (1` ), allora
+l’algoritmo Distinguisher viola la Definizione 3.8.
+Detto ciò, possiamo costruire A0 come segue
+Adv A0 (1n )
+1
+
+sceglie uniformemente k ∈ {0, 1}n
+
+2
+
+invoca A(1n , Enck (1` ))
+
+3
+
+dà in output qualsiasi cosa A dà in output
+
+A dà in output f (m) quando viene eseguito come subroutine di A0 con ≈ la
+stessa probabilità di quando riceve Enck (m). Pertanto A0 ha i requisiti
+richiesti dal teorema.
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+23 / 26
+
+Sicurezza Semantica
+
+La garanzia offerta dalla sicurezza semantica è più forte della garanzia
+offerta dal Teorema 3.11
+la lunghezza dei messaggi dipende dal parametro di sicurezza n
+la distribuzione di probabilità su M è arbitraria
+unica condizione: sia efficientemente campionabile (samplable). Cioè,
+esiste Samp(1n ), algoritmo PPT, che dà in output messaggi in accordo
+alla distribuzione di probabilità definita su M
+
+inoltre, la definizione tiene anche conto di eventuali informazioni
+aggiuntive h(m) sul messaggio m che l’avversario può ottenere
+attraverso altri mezzi
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+24 / 26
+
+Sicurezza Semantica
+Definizione 3.12. Uno schema di cifratura a chiave privata
+Π = (Gen, Enc, Dec) è semanticamente sicuro in presenza di un
+eavesdropper se, per ogni Adv A PPT, esiste un Adv A0 PPT tale che, per
+qualsiasi Samp(1n ) PPT e per ogni coppia di funzioni f ed h, calcolabili in
+tempo polinomiale, esiste una funzione trascurabile negl per cui si ha:
+|Pr [A(1n , Enck (m), h(m)) = f (m)] − Pr [A0 (1n , |m|, h(m)) = f (m)]| ≤ negl(n),
+dove la prima probabilità è calcolata su
+scelta uniforme di k ∈ {0, 1}n
+random bit usati da Samp(1n )
+random bit usati da A
+random bit usati da Enck (·)
+e la seconda su
+random bit usati da Samp(1n ) e random bit usati da A0
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+25 / 26
+
+Sicurezza Semantica
+
+Teorema 3.13. Π = (Enc, Dec) ha cifrature indistinguibili in presenza di
+un eavesdropper se e solo se è semanticamente sicuro in presenza di un
+eavesdropper.
+⇓
+Possiamo usare la definizione più semplice di indistinguibilità come
+definizione di lavoro!
+
+Paolo D’Arco (Unisa)
+
+Schemi computazionalmente sicuri
+
+EC-2025
+
+26 / 26
+
+

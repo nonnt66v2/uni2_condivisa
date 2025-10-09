@@ -1,0 +1,351 @@
+Cifratura CPA sicura da funzioni pseudocasuali
+Paolo D’Arco
+pdarco@unisa.it
+Università di Salerno
+
+Elementi di Crittografia
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+1 / 18
+
+Contenuti
+
+1
+
+Cifratura CPA sicura
+
+2
+
+Schema
+
+3
+
+Riduzione
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+2 / 18
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+Costruiremo uno schema di cifratura per messaggi di lunghezza fissa
+Ne possiamo ottenere facilmente uno per lunghezze arbitrarie applicando i
+risultati precedenti
+Primo tentativo:
+Enck (m) = Fk (m)
+Deterministico ... non funziona ... (stesso messaggio ⇒ stesso cifrato)
+Approccio giusto:
+Applichiamo Fk ad una stringa casuale r per produrre un "pad"
+pseudocasuale.
+Cifriamo calcolando l’xor tra il pad ed il messaggio m.
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+3 / 18
+
+Idea
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+4 / 18
+
+Specifica dello schema
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+5 / 18
+
+Proprietà
+
+Teorema 3.31. Se F è pseudocasuale, allora la Costruzione 3.30 realizza
+uno schema di cifratura CPA-sicuro per messaggi di lunghezza n.
+Dim. Nota preliminare: le prove di sicurezza per schemi basati su PRF
+procedono solitamente in due fasi
+Prima fase: consideriamo una versione "ipotetica" della costruzione in
+cui la funzione pseudocasuale viene sostituita da una funzione casuale.
+Mostriamo che questa modifica non influisce sulla probabilità di
+successo di Adv
+Seconda fase: analizziamo lo schema ipotetico che utilizza la funzione
+casuale
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+6 / 18
+
+Dimostrazione
+∼
+
+∼
+
+∼
+
+∼
+
+Sia Π= (Gen, Enc, Dec) costruito a partire da Π = (Gen, Enc, Dec), tale
+che
+∼
+
+Π usa f ∈ Funcn scelta uniformemente a caso
+Π usa Fk , dove k è scelta uniformemente a caso
+∼
+
+Ovviamente, Π non è efficiente: f richiede spazio esponenziale in n per la
+memorizzazione.
+Per ogni Adv A PPT sia q(n) un limite superiore al numero di query che
+A(1n ) rivolge al suo oracolo per la cifratura (q(n) deve essere un polinomio)
+Mostriamo che esiste una funzione trascurabile negl tale che
+cpa
+|Pr [PrivKA,Π
+(n) = 1] − Pr [PrivK cpa∼ (n) = 1]| ≤ negl(n).
+A,Π
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+7 / 18
+
+Dimostrazione
+
+Procediamo per riduzione: usiamo A per costruire un distinguisher D per la
+funzione pseudocasuale F
+Se A ha successo contro Π (con prob. significativa)
+⇒ D distingue (con prob. significativa)
+Precisamente:
+D ha accesso all’oracolo O(·) ed il suo scopo è stabilire se la funzione
+è "Fk , per k uniforme in {0, 1}n " oppure "f ∈ Funcn , uniforme".
+cpa
+D emula l’esperimento PrivKA,?
+(n) per A ed osserva se A ha successo.
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+8 / 18
+
+Esperimento CPA
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+9 / 18
+
+Distinguisher
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+10 / 18
+
+Distinguisher
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+11 / 18
+
+Analisi
+
+D computa in tempo polinomiale poichè A computa in tempo polinomiale.
+Inoltre, si noti che:
+1
+
+Se l’oracolo di D contiene al suo interno una funzione pseudocasuale
+cpa
+Vista di A come subroutine di D = Vista di A in PrivKA,Π
+(n)
+
+2
+
+Se l’oracolo di D contiene al suo interno una funzione casuale
+Vista di A come subroutine di D = Vista di A in PrivK cpa∼ (n)
+A,Π
+
+Pertanto, possiamo dire che:
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+12 / 18
+
+Analisi
+
+1
+
+cpa
+⇒ Prk←{0,1}n [D Fk (·) (1n ) = 1] = Pr [PrivKA,Π
+(n) = 1]
+
+2
+
+⇒ Prf ←Funcn [D f (·) (1n ) = 1] = Pr [PrivK cpa∼ (n) = 1]
+A,Π
+
+Ma l’assunzione che F è pseudocasuale implica che ∃ negl(n) tale che:
+|Prk←{0,1}n [D Fk (·) (1n ) = 1] − Prf ←Funcn [D f (·) (1n ) = 1]| ≤ negl(n)
+m
+cpa
+|Pr [PrivKA,Π
+(n) = 1] − Pr [PrivK cpa∼ (n) = 1]| ≤ negl(n)
+A,Π
+
+Pertanto possiamo analizzare lo schema ipotetico.
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+13 / 18
+
+Successo di A nello schema ipotetico
+Mostriamo che
+Pr [PrivK cpa∼ (n) = 1] ≤ 1/2 + q(n)/2n .
+A,Π
+
+Nota che, ogni volta che un messaggio m viene cifrato, in PrivK cpa∼ (n)
+viene scelto un r ∈ {0, 1}n uniforme, ed il cifrato risulta
+
+A,Π
+
+< r , f (r ) ⊕ m >
+Sia r ∗ la stringa usata per produrre il cifrato di sfida, cioè
+c ∗ :=< r ∗ , f (r ∗ ) ⊕ mb >
+Possono verificarsi due casi:
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+14 / 18
+
+Successo di A nello schema ipotetico
+Il valore di r ∗ non è mai usato prima da O(·) per rispondere alle query
+di A
+⇒ A non sa nulla circa f (r ∗ ), che risulta uniforme ed
+indipendentemente distribuito dal resto dell’esperimento
+⇒ Pr [PrivK cpa∼ (n) = 1] = Pr [b 0 = b] = 1/2
+A,Π
+
+Il valore di r ∗ è stato usato in precedenza
+⇒ A può capire facilmente se è stato cifrato m0 o m1 . Infatti,
+disponendo di f (r ∗ ), poichè c ∗ :=< r ∗ , f (r ∗ ) ⊕ mb >, risulta
+f (r ∗ ) ⊕ (f (r ∗ ) ⊕ mb ) = mb .
+
+Il valore f (r ∗ ) può essere recuperato dalla query in cui r ∗ è usato: se
+A ha ricevuto dall’oracolo, per qualche m, il cifrato
+c :=< r ∗ , s >=< r ∗ , f (r ∗ ) ⊕ m >, allora
+s ⊕ m = f (r ∗ ).
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+15 / 18
+
+Successo di A nello schema ipotetico
+Tuttavia, poichè A effettua al più q(n) query all’oracolo, al più q(n) valori
+distinti di r vengono usati, scelti indip. e uniformemente in {0, 1}n .
+Pertanto, la prob. che r ∗ , scelto uniformemente, sia uguale ad un r
+precedente è al più q(n)/2n .
+Indichiamo con Repeat l’evento che r ∗ sia uguale a qualche r scelto prima.
+Risulta Pr [PrivK cpa∼ (n) = 1] uguale a
+A,Π
+
+Pr [PrivK cpa∼ (n) = 1 ∧ Repeat] + Pr [PrivK cpa∼ (n) = 1 ∧ Repeat]
+A,Π
+
+A,Π
+
+≤ Pr [ Repeat] + Pr [PrivK cpa∼ (n) = 1| Repeat] · Pr [ Repeat]
+A,Π
+
+≤ Pr [ Repeat] + Pr [PrivK cpa∼ (n) = 1| Repeat]
+A,Π
+
+≤ q(n)/2n + 1/2.
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+16 / 18
+
+Successo di A nello schema ipotetico
+Poichè abbiamo mostrato che
+cpa
+|Pr [PrivKA,Π
+(n) = 1] − Pr [PrivK cpa∼ (n) = 1]| ≤ negl(n)
+A,Π
+
+si ha:
+cpa
+Pr [PrivKA,Π
+(n) = 1] ≤ Pr [PrivK cpa∼ (n) = 1] + negl(n)
+A,Π
+
+n
+
+≤ q(n)/2 + 1/2 + negl(n)
+≤ 1/2 + q(n)/2n + negl(n)
+≤ 1/2 + negl 0 (n).
+
+Pertanto, Π è CPA-sicuro.
+
+Paolo D’Arco (Unisa)
+
+Cifratura CPA sicura da funzioni pseudocasuali
+
+EC-2025
+
+17 / 18
+
+

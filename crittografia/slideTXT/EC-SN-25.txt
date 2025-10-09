@@ -1,75 +1,99 @@
-                       Sicurezza: altre nozioni
+Sicurezza: altre nozioni
+Paolo D’Arco
+pdarco@unisa.it
+Universitá di Salerno
 
-                             Paolo D’Arco
-                           pdarco@unisa.it
+Elementi di Crittografia
 
-                            Universitá di Salerno
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
-                         Elementi di Crittografia
+EC-2025
 
+1 / 42
 
-
-
-Paolo D’Arco (Unisa)         Sicurezza: altre nozioni   EC-2025   1 / 42
 Contenuti
 
+1
 
+Altre nozioni di sicurezza
 
+2
 
-1   Altre nozioni di sicurezza
+Oracoli
 
+3
 
-2   Oracoli
+Funzioni e permutazioni pseudocasuali
 
+Paolo D’Arco (Unisa)
 
-3   Funzioni e permutazioni pseudocasuali
+Sicurezza: altre nozioni
 
+EC-2025
 
+2 / 42
 
-
-    Paolo D’Arco (Unisa)         Sicurezza: altre nozioni   EC-2025   2 / 42
 Nozioni di sicurezza
 Fino ad ora: Adv ascolta passivamente la trasmissione. Ha accesso ad un
 cifrato che due parti oneste si scambiano.
 Sarebbe utile avere una nozione di sicurezza che permetta alle parti di
 inviare messaggi multipli.
-           eav −mult
-      PrivKA,Π       (n)
-         1   A(1n ) dá in output due liste della stessa lunghezza
-             M0 = (m0,1 , . . . , m0,t ) ed M1 = (m1,1 , . . . , m1,t ) tali che
-             |m0,i | = |m1,i |, per ogni i.
-         2   il Challenger sceglie b ← {0, 1} e k ← Gen(1n ) e calcola
-             ci ← Enck (mb,i ), per ogni i
-         3   A(1n ) riceve c = (c1 , . . . , ct ) e dá in output b 0 ∈ {0, 1}
-         4   Se b = b 0 , l’output dell’esperimento é 1 (A(1n ) vince);
-             altrimenti, 0.
+eav −mult
+PrivKA,Π
+(n)
+1
 
+2
 
-   Paolo D’Arco (Unisa)            Sicurezza: altre nozioni                EC-2025   3 / 42
+3
+4
+
+A(1n ) dá in output due liste della stessa lunghezza
+M0 = (m0,1 , . . . , m0,t ) ed M1 = (m1,1 , . . . , m1,t ) tali che
+|m0,i | = |m1,i |, per ogni i.
+il Challenger sceglie b ← {0, 1} e k ← Gen(1n ) e calcola
+ci ← Enck (mb,i ), per ogni i
+A(1n ) riceve c = (c1 , . . . , ct ) e dá in output b 0 ∈ {0, 1}
+Se b = b 0 , l’output dell’esperimento é 1 (A(1n ) vince);
+altrimenti, 0.
+
+Paolo D’Arco (Unisa)
+
+Sicurezza: altre nozioni
+
+EC-2025
+
+3 / 42
+
 Indistinguibilitá rispetto a messaggi multipli
-
 
 Definizione 3.19. Uno schema di cifratura a chiave privata
 Π = (Gen, Enc, Dec) ha cifrature multiple indistinguibili in presenza di un
 eavesdropper se, per ogni Adv A PPT, esiste una funzione trascurabile negl
 tale che:
-                           eav −mult           1
-                  Pr [PrivKA,Π       (n) = 1] ≤ + negl(n),
-                                               2
+1
+eav −mult
+Pr [PrivKA,Π
+(n) = 1] ≤ + negl(n),
+2
 dove la probabilitá é calcolata su
-    randomness usata da A
-    randomness usata nell’esperimento
-           scelta della chiave
-           scelta del bit b
-           random bit usati da Enck (·)
+randomness usata da A
+randomness usata nell’esperimento
+scelta della chiave
+scelta del bit b
+random bit usati da Enck (·)
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
-   Paolo D’Arco (Unisa)          Sicurezza: altre nozioni      EC-2025   4 / 42
+EC-2025
+
+4 / 42
+
 Perché ci convince?
-
-
 
 Rispetto al caso del messaggio singolo, i messaggi potrebbero essere legati
 tra di loro e le stesse cifrature potrebbero essere legate tra di loro e con i
@@ -80,64 +104,82 @@ Ma se l’avversario non riesce a capire se (c1 , . . . , ct ) corrisponda a
 indistinguibilitá - semantica, allora lo schema di cifratura maschera molto
 bene i contenuti dei cifrati.
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-   Paolo D’Arco (Unisa)        Sicurezza: altre nozioni           EC-2025   5 / 42
+5 / 42
+
 Indistinguibilitá rispetto a messaggi multipli
-
-
-
 
 Osservazione immediata:
-                         eav −mult                                eav (n)
-Π sicuro rispetto a PrivKA,Π       (n) ⇒ Π sicuro rispetto a PrivKA,Π
+eav −mult
+eav (n)
+Π sicuro rispetto a PrivKA,Π
+(n) ⇒ Π sicuro rispetto a PrivKA,Π
 (caso speciale, un messaggio)
+
 Possiamo far vedere che non é vero l’inverso con un controesempio.
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-   Paolo D’Arco (Unisa)       Sicurezza: altre nozioni          EC-2025     6 / 42
+6 / 42
+
 Indistinguibilitá rispetto a messaggi multipli
-
-
 
 Proposizione 3.20. Esiste uno schema di cifratura a chiave privata che ha
 cifrature indistinguibili in presenza di un eavesdropper ma non ha cifrature
 multiple indistinguibili.
 Dim. Consideriamo lo schema one-time pad (in breve otp).
-
-                  Segretezza perfetta ⇒ cifrature indistinguibili.
-
+Segretezza perfetta ⇒ cifrature indistinguibili.
 Sia A l’Adv che segue, che attacca lo schema otp nell’esperimento
-      eav −mult
-PrivKA,otp      (n)
+eav −mult
+PrivKA,otp
+(n)
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-   Paolo D’Arco (Unisa)           Sicurezza: altre nozioni           EC-2025   7 / 42
+7 / 42
+
 Indistinguibilitá rispetto a messaggi multipli
+Adv A
+1
 
-      Adv A
-         1   Sceglie M0 = (0` , 0` ) ed M1 = (0` , 1` ) e li passa al
-             Challenger
-         2   Riceve dal Challenger la lista di cifrati c = (c1 , c2 )
-         3   Se c1 = c2 , dá in output b 0 = 0; altrimenti, b 0 = 1.
+Sceglie M0 = (0` , 0` ) ed M1 = (0` , 1` ) e li passa al
+Challenger
 
+2
+
+Riceve dal Challenger la lista di cifrati c = (c1 , c2 )
+
+3
+
+Se c1 = c2 , dá in output b 0 = 0; altrimenti, b 0 = 1.
 
 Analizziamo la probabilitá che b 0 = b. Lo schema otp é deterministico.
-
-                          se b = 0, allora c1 = c2 ⇒ A dá 0
-                          se b = 1, allora c1 6= c2 ⇒ A dá 1
-
+se b = 0, allora c1 = c2 ⇒ A dá 0
+se b = 1, allora c1 6= c2 ⇒ A dá 1
 Pertanto A vince con prob. 1 e otp non é sicuro rispetto alla Definizione
 3.19.
+Paolo D’Arco (Unisa)
 
-   Paolo D’Arco (Unisa)            Sicurezza: altre nozioni             EC-2025   8 / 42
+Sicurezza: altre nozioni
+
+EC-2025
+
+8 / 42
+
 Indistinguibilitá rispetto a messaggi multipli
-
 Osservazione:
 se uno schema di cifratura é deterministico, la cifratura dello stesso
 messaggio dá lo stesso cifrato ⇒ la Definizione 3.19 richiede che la
@@ -147,61 +189,83 @@ allora Π non puó avere cifrature multiple indistinguibili in presenza di un
 eavesdropper.
 Al momento sembra un requisito che confligge con l’operazione di
 decifratura Dec()
-
-               stesso messaggio cifrato piú volte ⇒ cifrati diversi
-
+stesso messaggio cifrato piú volte ⇒ cifrati diversi
 ... ma si puó fare!
+Paolo D’Arco (Unisa)
 
-   Paolo D’Arco (Unisa)          Sicurezza: altre nozioni             EC-2025   9 / 42
+Sicurezza: altre nozioni
+
+EC-2025
+
+9 / 42
+
 Attacchi di tipo Chosen-Plaintext
-
 Adv: ha l’abilitá di esercitare controllo parziale su ció che una parte onesta
 cifra
-  1    puó scegliere m1 , m2 , . . . , mt e forzare Alice a cifrarli ed inviarli
-  2    puó osservare i cifrati corrispondenti c1 , c2 , . . . , ct inviati da Alice sul
-       canale
-  3    osserva un nuovo cifrato c, prodotto autonomamente da Alice, che
-       diventa il target dell’attacco
+1
+
+puó scegliere m1 , m2 , . . . , mt e forzare Alice a cifrarli ed inviarli
+
+2
+
+puó osservare i cifrati corrispondenti c1 , c2 , . . . , ct inviati da Alice sul
+canale
+
+3
+
+osserva un nuovo cifrato c, prodotto autonomamente da Alice, che
+diventa il target dell’attacco
+
 Anche in questo caso, definiremo la sicurezza di uno schema in accordo alla
 nozione di indistinguibilitá
-       al passo 3. il cifrato c corrisponde alla cifratura di uno tra {m0 , m1 },
-       noti ad Adv, e richiederemo l’incapacitá di Adv di capire a quale dei
-       due effettivamente corrisponde
+al passo 3. il cifrato c corrisponde alla cifratura di uno tra {m0 , m1 },
+noti ad Adv, e richiederemo l’incapacitá di Adv di capire a quale dei
+due effettivamente corrisponde
 
+Paolo D’Arco (Unisa)
 
-      Paolo D’Arco (Unisa)          Sicurezza: altre nozioni              EC-2025    10 / 42
+Sicurezza: altre nozioni
+
+EC-2025
+
+10 / 42
+
 Attacchi di tipo Chosen-Plaintext
-
 Nota: gli attacchi di tipo known-plaintext sono un caso particolare. Adv
 conosce ma non sceglie m1 , . . . , mt .
 Sono una preoccupazione realistica? Sí!
 Nel libro di testo vengono riportati due esempi storici:
-     Tedeschi: seconda guerra mondiale (mine in posizioni note da parte
-     degli Inglesi, cifrate dai tedeschi)
-     Us Navy, battaglia di Midway, 1942 (ipotesi AF cifratura di Midway,
-     confermata inducendo la cifratura di un messaggio ad hoc)
+Tedeschi: seconda guerra mondiale (mine in posizioni note da parte
+degli Inglesi, cifrate dai tedeschi)
+Us Navy, battaglia di Midway, 1942 (ipotesi AF cifratura di Midway,
+confermata inducendo la cifratura di un messaggio ad hoc)
 Leggeteli!
 Esempio moderno: utente che digita dati ad un terminale, il terminale cifra
 (con chiave segreta) prima di inviarli. Un Adv puó usare il terminale prima
 dell’utente per acquisire coppie (msg, cifrato).
 
+Paolo D’Arco (Unisa)
 
-   Paolo D’Arco (Unisa)        Sicurezza: altre nozioni       EC-2025      11 / 42
+Sicurezza: altre nozioni
+
+EC-2025
+
+11 / 42
+
 Attacchi di tipo Chosen-Plaintext
 
+Come facciamo a modellare la capacitá di Adv di disporre di
+cifrati corrispondenti a messaggi di propria scelta?
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
-      Come facciamo a modellare la capacitá di Adv di disporre di
-      cifrati corrispondenti a messaggi di propria scelta?
+EC-2025
 
+12 / 42
 
-
-
-   Paolo D’Arco (Unisa)     Sicurezza: altre nozioni       EC-2025   12 / 42
 Esperimenti
-
-
 
 Abbiamo giá usato esperimenti per definire le nozioni di indistinguibilitá
 perfetta e computazionale
@@ -214,269 +278,366 @@ Per modellare lo scenario di un attacco chosen-plaintext abbiamo bisogno
 di uno stratagemma per fornire ad Adv i cifrati corrispondenti ai messaggi
 che sceglie.
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-   Paolo D’Arco (Unisa)        Sicurezza: altre nozioni          EC-2025     13 / 42
+13 / 42
+
 Esperimenti
-
-
 
 Useremo un oracolo O: scatola nera che cifra messaggi usando una chiave
 k
-    Adv non conosce k
-    Adv invia richieste di cifratura, dette query, ad O specificando m ed
-    ottenendo in risposta Enck (m).
-    se Enck () é randomizzato, O usa random bit nuovi ogni volta che
-    riceve una query
-    Adv puó inviare, adattivamente, quante query vuole
+Adv non conosce k
+Adv invia richieste di cifratura, dette query, ad O specificando m ed
+ottenendo in risposta Enck (m).
+se Enck () é randomizzato, O usa random bit nuovi ogni volta che
+riceve una query
+Adv puó inviare, adattivamente, quante query vuole
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-   Paolo D’Arco (Unisa)      Sicurezza: altre nozioni         EC-2025   14 / 42
+14 / 42
+
 Esperimenti
-
-
 Siano Π = (Gen, Enc, Dec), Adv A, n parametro di sicurezza.
 Indichiamo con AO(·) un Adv (algoritmo) che ha accesso all’oracolo O(·).
+cpa
+PrivKA,Π
+(n) (Gestito da un Challenger)
+1
 
-           cpa
-      PrivKA,Π (n) (Gestito da un Challenger)
-         1   Genera k ← Gen(1n ) e setta l’oracolo O(·)
-         2   AO(·) (1n ) dá in output m0 ed m1 tali che |m0 | = |m1 |
-         3   Sceglie b ← {0, 1} e calcola c ← Enck (mb )
-         4   AO(·) (1n ) riceve c e dá in output b 0 ∈ {0, 1}
-         5   Se b = b 0 , l’output dell’esperimento é 1 (AO(·) (1n )
-             vince); altrimenti, 0.
+Genera k ← Gen(1n ) e setta l’oracolo O(·)
 
+2
 
+AO(·) (1n ) dá in output m0 ed m1 tali che |m0 | = |m1 |
 
+3
 
-   Paolo D’Arco (Unisa)          Sicurezza: altre nozioni              EC-2025   15 / 42
+Sceglie b ← {0, 1} e calcola c ← Enck (mb )
+
+4
+
+AO(·) (1n ) riceve c e dá in output b 0 ∈ {0, 1}
+
+5
+
+Se b = b 0 , l’output dell’esperimento é 1 (AO(·) (1n )
+vince); altrimenti, 0.
+
+Paolo D’Arco (Unisa)
+
+Sicurezza: altre nozioni
+
+EC-2025
+
+15 / 42
+
 Sicurezza rispetto ad attacchi chosen-plaintext
-
-
 
 Definizione 3.22. Uno schema di cifratura a chiave privata
 Π = (Gen, Enc, Dec) ha cifrature indistinguibili rispetto ad attacchi di tipo
 chosen plaintext (CPA-sicuro) se, per ogni Adv A PPT, esiste una funzione
 trascurabile negl tale che:
+cpa
+Pr [PrivKA,Π
+(n) = 1] ≤
 
-                                   cpa                   1
-                          Pr [PrivKA,Π (n) = 1] ≤          + negl(n),
-                                                         2
+1
++ negl(n),
+2
+
 dove la probabilitá é calcolata su
-     randomness usata da A
-     randomness usata nell’esperimento
+randomness usata da A
+randomness usata nell’esperimento
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-   Paolo D’Arco (Unisa)             Sicurezza: altre nozioni            EC-2025   16 / 42
+16 / 42
+
 Sicurezza CPA per cifrature multiple
-
 Per la formalizzazione, usiamo un approccio diverso dal precedente.
 Un Adv ha accesso ad un oracolo left-or-right, denotato con LRk,b , che, su
 input m0 ed m1 , restituisce c ← Enck (mb )
+LR−cpa
+PrivKA,Π
+(n) (Gestito da un Challenger)
+1
 
-           LR−cpa
-      PrivKA,Π    (n) (Gestito da un Challenger)
-         1   Genera k ← Gen(1n )
-         2   Sceglie b ← {0, 1}
-         3   ALRk,b (·) (1n ) dá in output b 0 ∈ {0, 1}
-         4   Se b = b 0 , l’output dell’esperimento é 1 (ALRk,b (·) (1n )
-             vince); altrimenti, 0.
+Genera k ← Gen(1n )
 
+2
 
+Sceglie b ← {0, 1}
 
+3
 
-   Paolo D’Arco (Unisa)           Sicurezza: altre nozioni            EC-2025   17 / 42
+ALRk,b (·) (1n ) dá in output b 0 ∈ {0, 1}
+
+4
+
+Se b = b 0 , l’output dell’esperimento é 1 (ALRk,b (·) (1n )
+vince); altrimenti, 0.
+
+Paolo D’Arco (Unisa)
+
+Sicurezza: altre nozioni
+
+EC-2025
+
+17 / 42
+
 Sicurezza CPA per cifrature multiple
 
-
-
-
 Differenze con l’approccio precedente:
+Adv ottiene le cifrature di m inviando la coppia (m, m)
+le coppie (m0,i , m1,i ) sono scelte adattivamente invece che in un sol
+colpo.
 
-    Adv ottiene le cifrature di m inviando la coppia (m, m)
-    le coppie (m0,i , m1,i ) sono scelte adattivamente invece che in un sol
-    colpo.
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
+18 / 42
 
-   Paolo D’Arco (Unisa)       Sicurezza: altre nozioni          EC-2025   18 / 42
 Sicurezza cpa per messaggi multipli
-
 Definizione 3.23. Uno schema di cifratura a chiave privata
 Π = (Gen, Enc, Dec) ha cifrature multiple indistinguibili rispetto ad
 attacchi di tipo chosen plaintext se, per ogni Adv A PPT, esiste una
 funzione trascurabile negl tale che:
+LR−cpa
+Pr [PrivKA,Π
+(n) = 1] ≤
 
-                               LR−cpa                        1
-                      Pr [PrivKA,Π    (n) = 1] ≤               + negl(n),
-                                                             2
+1
++ negl(n),
+2
+
 dove la probabilitá é calcolata su
-     randomness usata da A
-     randomness usata nell’esperimento
+randomness usata da A
+randomness usata nell’esperimento
 Ovviamente,
-
-             Π CPA-sicuro per cifrature multiple ⇒ Π CPA-sicuro
-
+Π CPA-sicuro per cifrature multiple ⇒ Π CPA-sicuro
 Vale anche l’inverso!
-   Paolo D’Arco (Unisa)           Sicurezza: altre nozioni                  EC-2025   19 / 42
-Conseguenze
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
+
+EC-2025
+
+19 / 42
+
+Conseguenze
 Teorema 3.4. Ogni schema di cifratura a chiave privata CPA-sicuro risulta
 anche CPA-sicuro per cifrature multiple.
 Discende che:
-    é sufficiente provare che uno schema é CPA-sicuro (per una sola
-    cifratura) per ottenere gratuitamente che é CPA-sicuro per cifrature
-    multiple
-    permette di concentrarci su schemi di cifratura per messaggi di
-    lunghezza fissata
+é sufficiente provare che uno schema é CPA-sicuro (per una sola
+cifratura) per ottenere gratuitamente che é CPA-sicuro per cifrature
+multiple
+permette di concentrarci su schemi di cifratura per messaggi di
+lunghezza fissata
+Π = (Gen, Enc, Dec) CPA-sicuro per messaggi di 1 bit
+⇓
+Π0 = (Gen0 , Enc 0 , Dec 0 ) CPA-sicuro per messaggi di lunghezza arbitraria
 
-            Π = (Gen, Enc, Dec) CPA-sicuro per messaggi di 1 bit
+Paolo D’Arco (Unisa)
 
-                                         ⇓
+Sicurezza: altre nozioni
 
- Π0 = (Gen0 , Enc 0 , Dec 0 ) CPA-sicuro per messaggi di lunghezza arbitraria
+EC-2025
 
+20 / 42
 
-   Paolo D’Arco (Unisa)        Sicurezza: altre nozioni          EC-2025   20 / 42
 Conseguenze
 
-
 Struttura dello schema per messaggi di lunghezza arbitraria
-    Gen0 = Gen
-    Enck0 (m) = Enck (m1 ) . . . Enck (m` ), dove m = m1 . . . m` , ed
-    mi ∈ {0, 1}
-    Deck0 (c) = Deck (c1 ) . . . Deck (c` ), dove c = c1 . . . c` , e ci ∈ C per
-    ogni i
-
+Gen0 = Gen
+Enck0 (m) = Enck (m1 ) . . . Enck (m` ), dove m = m1 . . . m` , ed
+mi ∈ {0, 1}
+Deck0 (c) = Deck (c1 ) . . . Deck (c` ), dove c = c1 . . . c` , e ci ∈ C per
+ogni i
 Osservazione:
-
 La cifratura puó essere vista come la cifratura di messaggi multipli.
 Pertanto, la sicurezza CPA di Π0 discende dalla sicurezza CPA di Π per
 messaggi multipli.
 
+Paolo D’Arco (Unisa)
 
-   Paolo D’Arco (Unisa)          Sicurezza: altre nozioni              EC-2025     21 / 42
+Sicurezza: altre nozioni
+
+EC-2025
+
+21 / 42
+
 Costruzione di schemi CPA-sicuri
 
-
 Abbiamo bisogno di uno strumento nuovo
-    le funzioni pseudocasuali (pseudorandom function, o PRF in breve)
-
+le funzioni pseudocasuali (pseudorandom function, o PRF in breve)
 Generalizzano la nozione di generatore pseudocasuale
-
-    i PRG producono stringhe che sembrano casuali
-    le PRF sono funzioni che sembrano casuali
+i PRG producono stringhe che sembrano casuali
+le PRF sono funzioni che sembrano casuali
 Non ha senso parlare di una funzione fissata
 Dobbiamo considerare una distribuzione di funzioni.
 Funzioni parametrizzate da una chiave (keyed function) inducono
 naturalmente una distribuzione di funzioni
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
-   Paolo D’Arco (Unisa)       Sicurezza: altre nozioni      EC-2025     22 / 42
+EC-2025
+
+22 / 42
+
 Funzioni pseudocasuali
 
-
-
-
 Una funzione parametrizzata da una chiave
-
-                          F : {0, 1}∗ × {0, 1}∗ → {0, 1}∗
-
+F : {0, 1}∗ × {0, 1}∗ → {0, 1}∗
 é una funzione con due input, in cui il primo é chiamato chiave e viene
 denotato con k.
 F é efficiente se ∃ un algoritmo di tempo polinomiale per calcolare F (k, x),
 dati k e x
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-   Paolo D’Arco (Unisa)           Sicurezza: altre nozioni      EC-2025   23 / 42
+23 / 42
+
 Funzioni pseudocasuali
 
-
-
 In usi tipici, k viene scelto e fissato. Per cui
+ovvero
 
-               Fk (x) = F (k, x)     ovvero         Fk : {0, 1}∗ → {0, 1}∗
+Fk (x) = F (k, x)
+
+Fk : {0, 1}∗ → {0, 1}∗
 
 Nella nostra trattazione, il parametro di sicurezza n parametrizza tre
 funzioni:
-     `key (n) lunghezza della chiave
-     `in (n) lunghezza dell’input
-     `out (n) lunghezza dell’output
+`key (n) lunghezza della chiave
+`in (n) lunghezza dell’input
+`out (n) lunghezza dell’output
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-    Paolo D’Arco (Unisa)           Sicurezza: altre nozioni              EC-2025   24 / 42
+24 / 42
+
 Funzioni pseudocasuali
-
 Per ogni k ∈ {0, 1}`key (n) , Fk é definita solo per x ∈ {0, 1}`in (n) ed ha
 output y ∈ {0, 1}`out (n) .
 Siano `key (n) = `in (n) = `out (n) = n (F preserva la lunghezza).
 Una funzione F (·, ·) parametrizzata da una chiave induce una distribuzione
 di funzioni
-     scegliendo una chiave uniforme k ∈ {0, 1}n
-     considerando la funzione di una singola variabile Fk risultante
+scegliendo una chiave uniforme k ∈ {0, 1}n
+considerando la funzione di una singola variabile Fk risultante
 
+F é pseudocasuale se Fk , per k scelta uniformemente a caso,
+é indistinguibile da una funzione scelta uniformemente a caso
+dall’insieme di tutte le funzioni aventi lo stesso dominio e lo
+stesso codominio
+Paolo D’Arco (Unisa)
 
-       F é pseudocasuale se Fk , per k scelta uniformemente a caso,
-       é indistinguibile da una funzione scelta uniformemente a caso
-       dall’insieme di tutte le funzioni aventi lo stesso dominio e lo
-       stesso codominio
+Sicurezza: altre nozioni
 
+EC-2025
 
-    Paolo D’Arco (Unisa)         Sicurezza: altre nozioni            EC-2025   25 / 42
+25 / 42
+
 Funzioni pseudocasuali
-
 Per formalizzare la nozione, abbiamo bisogno di chiarire alcuni aspetti.
 Per esempio, cosa significa scegliere una funzione a caso?
-
-             Sia Funcn = { tutte le funzioni f : {0, 1}n → {0, 1}n }
-
+Sia Funcn = { tutte le funzioni f : {0, 1}n → {0, 1}n }
 Una funzione puó essere rappresentata con una tabella con 2n righe,
 ciascuna di n bit.
 
+f ∈ Funcn →
 
-                           1 f (1)
-                           2 f (2)
-                          ... ...
- f ∈ Funcn →                            ← valore della funzione sull’i-esima stringa
-                           i  f (i)
-                          ... ...
-                          2n f (2n )
+Paolo D’Arco (Unisa)
 
-   Paolo D’Arco (Unisa)            Sicurezza: altre nozioni          EC-2025   26 / 42
+1 f (1)
+2 f (2)
+... ...
+i
+f (i)
+... ...
+2n f (2n )
+
+← valore della funzione sull’i-esima stringa
+
+Sicurezza: altre nozioni
+
+EC-2025
+
+26 / 42
+
 Funzioni pseudocasuali
 Se concatenassimo tutte le righe della tabella, potremmo vedere f come
 una stringa di 2n · n bit, cioé:
+f (1)
 
-                 f (1)        ...          f (i)               ...     f (2n )
+...
+
+f (i)
+
+...
+
+f (2n )
 
 Pertanto,
-                          n
-          |Funcn | = 22 ·n     ← numero di funzioni di n-bit in n-bit
+n
+
+|Funcn | = 22 ·n
+
+← numero di funzioni di n-bit in n-bit
 
 Si noti che lo stesso insieme di funzioni Funcn puó essere visto come una
 tabella.
 
-                                                                       1       f1 (·)
-            scegliere una funzione a caso                             ...       ...
-                          ≈                                            i       fi (·)
-        scegliere una riga della tabella a caso                       ...       ...
-                                                                      2 n ·n
-                                                                     2       f22n ·n (·)
-   Paolo D’Arco (Unisa)             Sicurezza: altre nozioni                     EC-2025   27 / 42
-Funzioni pseudocasuali
+scegliere una funzione a caso
+≈
+scegliere una riga della tabella a caso
 
+Paolo D’Arco (Unisa)
+
+Sicurezza: altre nozioni
+
+1
+f1 (·)
+...
+...
+i
+fi (·)
+...
+...
+n ·n
+2
+2
+f22n ·n (·)
+EC-2025
+
+27 / 42
+
+Funzioni pseudocasuali
 D’altra parte, quest’ultima operazione é equivalente a vedere la riga della
 tabella come una riga di elementi scelti al volo, ogni volta che f viene
 valutata su un nuovo input.
@@ -484,13 +645,15 @@ Essenzialmente la riga viene riempita volta per volta.
 Viceversa, Fk , per k uniforme, viene scelta su un insieme F di al piú 2n
 funzioni.
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-   Paolo D’Arco (Unisa)       Sicurezza: altre nozioni          EC-2025     28 / 42
+28 / 42
+
 Funzioni pseudocasuali
-
-
 
 Dire che F é pseudocasuale significa che, nonostante la notevole differenza
 evidenziata, il comportamento di f e di Fk sembra lo stesso a qualsiasi
@@ -503,45 +666,59 @@ casi.
 Ma ... f ha lunghezza esponenziale (2n · n bit) e D, che é PPT, non puó
 neanche leggere la sua descrizione!
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-   Paolo D’Arco (Unisa)       Sicurezza: altre nozioni          EC-2025     29 / 42
+29 / 42
+
 Funzioni pseudocasuali
-
-
-
 
 Seconda idea: dare a D accesso ad un oracolo O(·) che o implementa Fk ,
 per k uniforme, o implementa f , per f uniforme.
-    D puó chiedere il valore della funzione su un numero polinomiale di
-    input x
-    non chiede mai due volte il valore per lo stesso x
-    al termine deve decidere se ha interagito con Fk o f
+D puó chiedere il valore della funzione su un numero polinomiale di
+input x
+non chiede mai due volte il valore per lo stesso x
+al termine deve decidere se ha interagito con Fk o f
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-   Paolo D’Arco (Unisa)       Sicurezza: altre nozioni       EC-2025   30 / 42
+30 / 42
+
 Definizione
-
-
 
 Definizione 3.25. Sia F : {0, 1}∗ × {0, 1}∗ → {0, 1}∗ una funzione con
 chiave efficiente che preserva la lunghezza. F é una funzione pseudocasuale
 se, per ogni distinguisher D PPT, esiste una funzione trascurabile negl tale
 che:
-             |Pr [D Fk (·) (1n ) = 1] − Pr [D f (·) (1n ) = 1]| ≤ negl(n),
- dove la prima probabilitá é calcolata su                e la seconda su
-      scelta uniforme di k                                   scelta uniforme di f
-      random bit di D                                        random bit di D
+|Pr [D Fk (·) (1n ) = 1] − Pr [D f (·) (1n ) = 1]| ≤ negl(n),
+dove la prima probabilitá é calcolata su
 
+e la seconda su
 
+scelta uniforme di k
 
+scelta uniforme di f
 
-   Paolo D’Arco (Unisa)       Sicurezza: altre nozioni                     EC-2025   31 / 42
+random bit di D
+
+random bit di D
+
+Paolo D’Arco (Unisa)
+
+Sicurezza: altre nozioni
+
+EC-2025
+
+31 / 42
+
 Pseudocasualitá
-
 
 Nota: Ovviamente D non riceve la chiave k!
 Altrimenti risulterebbe banale per D distinguere.
@@ -549,94 +726,103 @@ Infatti, chiedendo all’oracolo O(·) una valutazione su x e ricevendo O(x),
 potrebbe calcolare Fk (x) e controllare che Fk (x) = O(x). Se l’uguaglianza
 sussiste, D con altissima probabilitá sta interagendo con Fk . Piú
 valutazioni corroborerebbero l’ipotesi.
+⇓
+Se k diventa noto, la pseudocasualitá non c’é piú!
 
-                                          ⇓
+Paolo D’Arco (Unisa)
 
-               Se k diventa noto, la pseudocasualitá non c’é piú!
+Sicurezza: altre nozioni
 
+EC-2025
 
+32 / 42
 
-
-   Paolo D’Arco (Unisa)         Sicurezza: altre nozioni            EC-2025   32 / 42
 Esempio di funzione non pseudocasuale
-
-
 Esempio 3.6. Sia F una funzione con chiave che preserva la lunghezza,
 definita da
-                          F (k, x) = k ⊕ x.
+F (k, x) = k ⊕ x.
 Per ogni input x, il valore Fk (x) é uniformemente distribuito quando k
 viene scelto in modo uniforme.
-       F non é pseudocasuale poiché i suoi valori su ogni coppia di
-       punti sono correlati
-
+F non é pseudocasuale poiché i suoi valori su ogni coppia di
+punti sono correlati
 Infatti, D:
-     chiede all’oracolo valutazioni su x1 e x2
-     ottiene y1 = O(x1 ) e y2 = O(x2 )
-     se y1 ⊕ y2 = x1 ⊕ x2 , dá in output 1; altrimenti, dá 0.
+chiede all’oracolo valutazioni su x1 e x2
+ottiene y1 = O(x1 ) e y2 = O(x2 )
+se y1 ⊕ y2 = x1 ⊕ x2 , dá in output 1; altrimenti, dá 0.
 
+Paolo D’Arco (Unisa)
 
-    Paolo D’Arco (Unisa)       Sicurezza: altre nozioni         EC-2025   33 / 42
+Sicurezza: altre nozioni
+
+EC-2025
+
+33 / 42
+
 Esempio di funzione non pseudocasuale
-
 É facile vedere che:
-    se O ≡ Fk , per ogni k, D dá in output 1 con probabilitá 1, poiché
-
-                          y1 ⊕ y2 = (x1 ⊕ k) ⊕ (x2 ⊕ k) = x1 ⊕ x2
-
-    se O ≡ f , D dá in output 1 con probabilitá
-
-                Pr [y1 ⊕ y2 = x1 ⊕ x2 ] = Pr [y2 = x1 ⊕ x2 ⊕ y1 ] = 2−n
-
+se O ≡ Fk , per ogni k, D dá in output 1 con probabilitá 1, poiché
+y1 ⊕ y2 = (x1 ⊕ k) ⊕ (x2 ⊕ k) = x1 ⊕ x2
+se O ≡ f , D dá in output 1 con probabilitá
+Pr [y1 ⊕ y2 = x1 ⊕ x2 ] = Pr [y2 = x1 ⊕ x2 ⊕ y1 ] = 2−n
 La differenza |1 − 1/2n | ovviamente non é trascurabile
+⇓
+F non é pseudocasuale!
 
-                                             ⇓
+Paolo D’Arco (Unisa)
 
-                               F non é pseudocasuale!
+Sicurezza: altre nozioni
 
+EC-2025
 
+34 / 42
 
-   Paolo D’Arco (Unisa)            Sicurezza: altre nozioni         EC-2025   34 / 42
 Permutazioni pseudocasuali
-
 Sia Permn l’insieme di tutte le permutazioni su {0, 1}n .
 Nota che
-     f ∈ Permn puó essere vista ancora come una tabella
-     le entrate di ogni due righe della tabella sono differenti
-     |Permn | = 2n !
+f ∈ Permn puó essere vista ancora come una tabella
+le entrate di ogni due righe della tabella sono differenti
+|Permn | = 2n !
 F é una permutazione con chiave se `in (n) = `out (n) e per ogni
 k ∈ {0, 1}`key (n) la funzione
-
-                          Fk : {0, 1}`in (n) → {0, 1}`out (n)
-
+Fk : {0, 1}`in (n) → {0, 1}`out (n)
 é uno a uno.
 Il valore `in (n) si dice anche lunghezza del blocco di F .
 Considereremo il caso in cui `key (n) = `in (n) = `out (n) = n.
+Paolo D’Arco (Unisa)
 
-   Paolo D’Arco (Unisa)           Sicurezza: altre nozioni        EC-2025   35 / 42
+Sicurezza: altre nozioni
+
+EC-2025
+
+35 / 42
+
 Permutazioni pseudocasuali
-
 
 F é efficiente se esiste un algoritmo di tempo polinomiale per calcolare
 F (k, x), dati k ed x, cosí come un algoritmo di tempo polinomiale per
 calcolare Fk−1 (y ), dati k e y .
-                                      m
-
-              F efficientemente calcolabile ed invertibile, data k.
-
+m
+F efficientemente calcolabile ed invertibile, data k.
 La pseudocasualitá é definita esattamente come per le funzioni.
 Nota: quando la lunghezza del blocco é sufficientemente lunga, una
 permutazione casuale é indistinguibile da una funzione casuale.
+⇓
 
-                                          ⇓
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-   Paolo D’Arco (Unisa)         Sicurezza: altre nozioni              EC-2025   36 / 42
+36 / 42
+
 Permutazioni pseudocasuali
 
+Funzione uniforme
 
-                           "appare identica"
-       Funzione uniforme          ≈          Permutazione uniforme
+"appare identica"
+≈
+Permutazione uniforme
 
 ... a meno che il distinguisher D non trovi x ed y tali che f (x) = f (y ).
 La probabilitá di un tale evento é trascurabile utilizzando un numero
@@ -647,33 +833,53 @@ Abbiamo bisogno di una nozione forte, che tenga di conto anche questa
 possibilitá dell’Adv, che possiamo modellare con un accesso ad un oracolo
 per Fk−1 .
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
-   Paolo D’Arco (Unisa)        Sicurezza: altre nozioni           EC-2025     37 / 42
+EC-2025
+
+37 / 42
+
 Permutazioni pseudocasuali forti
-
-
 
 Definizione 3.28. Sia F : {0, 1}∗ × {0, 1}∗ → {0, 1}∗ una permutazione
 con chiave efficiente che preserva la lunghezza. F é una permutazione
 pseudocasuale forte se, per ogni distinguisher D PPT, esiste una funzione
 trascurabile negl tale che:
-                      −1                                       −1 (·)
-      |Pr [D Fk (·),Fk     (·)
-                                 (1n ) = 1] − Pr [D f (·),f             (1n ) = 1]| ≤ negl(n),
+−1
 
- dove la prima probabilitá é calcolata su                            e la seconda su
-      scelta uniforme di k                                                  scelta uniforme di f
-      random bit di D                                                       random bit di D
+|Pr [D Fk (·),Fk
 
+(·)
 
+(1n ) = 1] − Pr [D f (·),f
 
+−1 (·)
 
-   Paolo D’Arco (Unisa)                   Sicurezza: altre nozioni                     EC-2025     38 / 42
+dove la prima probabilitá é calcolata su
+
+(1n ) = 1]| ≤ negl(n),
+
+e la seconda su
+
+scelta uniforme di k
+
+scelta uniforme di f
+
+random bit di D
+
+random bit di D
+
+Paolo D’Arco (Unisa)
+
+Sicurezza: altre nozioni
+
+EC-2025
+
+38 / 42
+
 Permutazioni pseudocasuali forti
-
-
-
 
 Nota: una permutazione pseudocasuale forte é anche una permutazione
 pseudocasuale.
@@ -681,62 +887,85 @@ Vedremo che nella pratica i cifrari a blocchi vengono progettati per essere
 istanziazioni sicure di permutazioni pseudocasuali forti, con una lunghezza
 della chiave e del blocco fissate.
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-   Paolo D’Arco (Unisa)       Sicurezza: altre nozioni         EC-2025   39 / 42
+39 / 42
+
 Funzioni pseudocasuali e generatori pseudocasuali
-
 Un generatore pseudocasuale G da una funzione pseudocasuale F si
 costruisce facilmente:
-
-                          G (s) = Fs (1)||Fs (2)|| . . . ||Fs (`)
-
+G (s) = Fs (1)||Fs (2)|| . . . ||Fs (`)
 per ogni valore di ` desiderato.
 Idea della prova: se sostituiamo Fs con f ∈ Funcn
+G 0 (s) = f (1)||f (2)|| . . . ||f (`)
 
-                  G 0 (s) = f (1)||f (2)|| . . . ||f (`)         (uniforme)
+(uniforme)
 
-                                               ⇓
-            G (s) = Fs (1)||Fs (2)|| . . . ||Fs (`)             (pseudocasuale),
+⇓
+G (s) = Fs (1)||Fs (2)|| . . . ||Fs (`)
+
+(pseudocasuale),
+
 perché, se non lo fosse, esisterebbe un D PPT che distingue Fs da f .
 
+Paolo D’Arco (Unisa)
 
-   Paolo D’Arco (Unisa)              Sicurezza: altre nozioni                 EC-2025   40 / 42
+Sicurezza: altre nozioni
+
+EC-2025
+
+40 / 42
+
 Generatori pseudocasuali e funzioni pseudocasuali
-
-
 Un generatore pseudocasuale G dá immediatamente una funzione
 pseudocasuale F con lunghezza di blocco piccola. Sia
-                                                           t(n) ·n
-                           G : {0, 1}n → {0, 1}2
+G : {0, 1}n → {0, 1}2
+
+t(n) ·n
 
 un generatore con fattore di espansione 2t(n) · n.
 Per calcolare Fk (i) :
-       calcoliamo G (k)                                                    r1
-       rappresentiamo l’output con una                                     ...
-       tabella                                                              ri
-       prendiamo la i-esima riga tra le 2t(n)                              ...
-       di n bit                                                           r2t(n)
+calcoliamo G (k)
+rappresentiamo l’output con una
+tabella
+prendiamo la i-esima riga tra le 2t(n)
+di n bit
 
+Paolo D’Arco (Unisa)
 
-    Paolo D’Arco (Unisa)        Sicurezza: altre nozioni             EC-2025       41 / 42
+Sicurezza: altre nozioni
+
+r1
+...
+ri
+...
+r2t(n)
+
+EC-2025
+
+41 / 42
+
 Generatori pseudocasuali e funzioni pseudocasuali
-
 
 Questa costruzione é efficiente solo se t(n) = O(log n).
 Infatti
-                       2t(n) · n = 2c log n · n = nc · n = poly (n)
-
+2t(n) · n = 2c log n · n = nc · n = poly (n)
 Nota che
-                           F : {0, 1}n × {0, 1}c log n → {0, 1}n
+F : {0, 1}n × {0, 1}c log n → {0, 1}n
 associa stringhe di n bit a stringhe di input di c log n bit.
-
 Una costruzione generale esiste ma é piú complicata. Ci torneremo nel
 seguito.
 
+Paolo D’Arco (Unisa)
 
+Sicurezza: altre nozioni
 
+EC-2025
 
-    Paolo D’Arco (Unisa)             Sicurezza: altre nozioni         EC-2025   42 / 42
+42 / 42
+
 

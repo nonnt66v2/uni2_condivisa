@@ -1,0 +1,683 @@
+Richiami di probabilità
+Informale
+
+Paolo D’Arco
+pdarco@unisa.it
+Università di Salerno
+
+Elementi di Crittografia
+
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+1 / 26
+
+Contenuti
+
+1
+
+Nozioni di base
+
+2
+
+Alcuni risultati e qualche bound
+
+3
+
+Variabili casuali e due disuguaglianze
+
+4
+
+Algoritmi e variabili casuali
+
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+2 / 26
+
+Richiami di probabilità
+Ω: insieme di tutti i possibili risultati di un esperimento (eventi elementari)
+Un evento E è un sottoinsieme di Ω
+Una probabilità è un modo di assegnare ad ogni evento un valore tra 0 e 1
+con la condizione che l’evento Ω ha probabilità 1. Precisamente, per ogni
+E ⊆ Ω, risulta
+Pr (E ) ≥ 0 e Pr (Ω) = 1.
+Inoltre, se E1 ed E2 sono mutualmente esclusivi, cioè non hanno risultati
+"in comune", allora
+Pr (E1 ∨ E2 ) = Pr (E1 ) + Pr (E2 ).
+Se Ē = Ω \ E indica il complemento di E ⊆ Ω, allora
+Pr (Ē ) = 1 − Pr (E ).
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+3 / 26
+
+Richiami di probabilità
+
+Se E1 ed E2 sono eventi, allora
+Pr (E1 ∧ E2 ) ≤ Pr (E1 ).
+mentre,
+Pr (E1 ∨ E2 ) ≥ Pr (E1 )
+
+e
+
+Pr (E1 ∨ E2 ) ≤ Pr (E1 ) + Pr (E2 ).
+
+In generale, dati k eventi, vale il seguente risultato (union bound)
+Pr (
+
+k
+_
+i=1
+
+Paolo D’Arco (Unisa)
+
+Ei ) ≤
+
+k
+X
+
+Pr (Ei ).
+
+i=1
+
+Richiami di probabilità
+
+EC-2025
+
+4 / 26
+
+Richiami di probabilità
+La probabilità condizionata di E1 dato E2 , denotata con Pr (E1 |E2 ), è
+definita come
+def
+
+Pr (E1 |E2 ) =
+
+Pr (E1 ∧ E2 )
+,
+Pr (E2 )
+
+dove Pr (E2 ) > 0.
+
+Segue che:
+Pr (E1 ∧ E2 ) = Pr (E1 |E2 ) · Pr (E2 ).
+Teorema di Bayes. Se Pr (E2 ) 6= 0, allora
+Pr (E1 |E2 ) =
+
+Pr (E2 |E1 ) · Pr (E1 )
+.
+Pr (E2 )
+
+Dim.
+Pr (E1 |E2 ) =
+Paolo D’Arco (Unisa)
+
+Pr (E1 ∧ E2 )
+Pr (E2 ∧ E1 )
+Pr (E2 |E1 ) · Pr (E1 )
+=
+=
+.
+Pr (E2 )
+Pr (E2 )
+Pr (E2 )
+Richiami di probabilità
+
+EC-2025
+
+5 / 26
+
+Richiami di probabilità
+Gli eventi E1 ed E2 sono probabilisticamente indipendenti se
+Pr (E1 | E2 ) = Pr (E1 ).
+Il verificarsi di E2 , cioè, non cambia la probabilità che si verifichi E1 .
+Nota che, se E1 ed E2 sono indipendenti, risulta
+Pr (E1 ) = Pr (E1 | E2 ) =
+
+Pr (E1 ∧ E2 )
+Pr (E2 )
+
+che implica:
+Pr (E1 ∧ E2 ) = Pr (E1 ) · Pr (E2 ).
+
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+6 / 26
+
+Richiami di probabilità
+Diremo che gli eventi E1 , E2 , . . . , En costituiscono una partizione di Ω se
+Pr (E1 ∨ E2 ∨ . . . ∨ En ) = 1
+
+e per ogni i 6= j, Pr (Ei ∧ Ej ) = 0.
+
+In tal caso, per qualsiasi F ⊆ Ω, risulta
+Pr (F ) =
+
+n
+X
+
+Pr (F ∧ Ei ).
+
+i=1
+
+Nel caso in cui n = 2, risulta E2 = Ē1 e quindi
+Pr (F ) = Pr (F ∧ E1 ) + Pr (F ∧ E2 )
+= Pr (F ∧ E1 ) + Pr (F ∧ Ē1 )
+= Pr (F | E1 ) · Pr (E1 ) + Pr (F | Ē1 ) · Pr (Ē1 ).
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+7 / 26
+
+Richiami di probabilità
+
+Prendendo F = E1 ∨ E2 , per qualsiasi E2 , otteniamo una limitazione
+migliore dell’union bound
+Pr (E1 ∨ E2 ) = Pr (E1 ∨ E2 | E1 ) · Pr (E1 ) + Pr (E1 ∨ E2 | Ē1 ) · Pr (Ē1 )
+≤ Pr (E1 ) + Pr (E2 | Ē1 ).
+Estendendo il risultato agli eventi E1 , E2 , . . . , En , vale il seguente
+Pr (
+
+n
+_
+
+i=1
+
+Paolo D’Arco (Unisa)
+
+Ei ) ≤ Pr (E1 ) +
+
+n
+X
+
+Pr (Ei | Ē1 ∧ . . . ∧ Ēi−1 ).
+
+i=2
+
+Richiami di probabilità
+
+EC-2025
+
+8 / 26
+
+Problema del compleanno
+
+Se scegliamo q elementi y1 , . . . , yq uniformemente a caso da un insieme di
+taglia N, qual è la probabilità che esistano i e j distinti tali che yi = yj
+(collisione)?
+Indichiamo la probabilità dell’evento con coll(q, N).
+Problema del compleanno: quanto deve essere numeroso un gruppo di
+persone affinchè, con probabilità almeno 1/2, due di esse siano nate lo
+stesso giorno?
+
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+9 / 26
+
+Problema del compleanno
+
+Corrispondenza:
+assumendo che i compleanni siano uniformemente distribuiti e che
+N = 365
+yi rappresenti il compleanno della persona i-esima nel gruppo
+y1 , . . . , yq
+la soluzione al problema del compleanno consiste nel trovare
+il minimo q per cui risulta coll(q, 365) ≥ 1/2
+Sorprendentemente q = 23 è sufficiente.
+
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+10 / 26
+
+Upper bound
+Lemma A.15. Sia N un intero positivo fissato, e siano y1 , . . . , yq q
+elementi scelti indipendentemente ed uniformemente da un insieme di
+taglia N. La probabilità che esistano i e j distinti per cui yi = yj è
+coll(q, N) ≤ q 2 /2N.
+Dim. Applichiamo l’union bound. Sia
+Coll l’evento che denota una collisione
+Colli,j l’evento yi = yj
+Per le assunzioni
+fatte, Pr [Colli,j ] = 1/N per ogni i e j distinti e
+W
+Coll = i6=j Colli,j . Pertanto,
+Pr [Coll] = Pr [
+
+_
+i6=j
+
+Paolo D’Arco (Unisa)
+
+Colli,j ] ≤
+
+X
+i6=j
+
+ 
+q
+1
+q2
+Pr [Colli,j ] =
+·
+≤
+.
+2
+N
+2N
+
+Richiami di probabilità
+
+EC-2025
+
+11 / 26
+
+Lower bound
+√
+Lemma A.15. Sia N un intero positivo fissato, e siano y1 , . . . , yq q ≤ 2N
+elementi scelti indipendentemente ed uniformemente da un insieme di
+taglia N. Allora la probabilità che esistano i e j distinti tali che yi = yj è
+coll(q, N) ≥ 1 − e −
+
+q·(q−1)
+2N
+
+≥
+
+q · (q − 1)
+.
+4N
+
+Dim. Consultate l’Appendice A del libro di testo.
+√
+Conclusione: se q = Θ( N), la probabilità di avere una collisione è costante.
+
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+12 / 26
+
+Variabili casuali
+Variabile casuale: variabile che può assumere un insieme di differenti valori,
+ciascuno con una probabilità associata.
+I valori vengono assunti in accordo al risultato dell’esperimento sottostante.
+Più formalmente
+X :Ω→S
+dove Ω è lo spazio degli eventi elementari con relative probabilità ed S un
+insieme di valori.
+Solitamente S è un insieme finito di numeri reali.
+Se X non assume valori negativi, è detta non negativa.
+Se S = {0, 1}, X viene detta variabile casuale 0/1 (o binaria).
+Il concetto può essere esteso al caso più generale in cui S contiene altri
+elementi: vettori, sequenze, matrici ...
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+13 / 26
+
+Valore medio
+Diremo che le variabili casuali 0/1 X1 , . . . , Xk sono indipendenti se, per
+tutti i b1 , . . . , bk , vale che
+Pr [X1 = b1 ∧ . . . ∧ Xk = bk ] =
+
+k
+Y
+
+Pr [Xi = bi ].
+
+i=1
+
+Il valore medio Exp(X ) della variabile casuale X è definito come
+X
+Exp(X ) =
+Pr [X = s] · s.
+s∈S
+
+Nota che può essere un valore ∈
+/ S.
+Il valore medio soddisfa la proprietà di linearità. Date le variabili casuali
+X1 , . . . , Xk (con dipendenze arbitrarie) risulta:
+Exp[
+
+k
+X
+i=1
+
+Paolo D’Arco (Unisa)
+
+Xi ] =
+
+k
+X
+
+Exp[Xi ].
+
+i=1
+
+Richiami di probabilità
+
+EC-2025
+
+14 / 26
+
+Disuguaglianza di Markov
+Se X1 e X2 sono indipendenti
+Exp(X1 X2 ) = Exp(X1 ) · Exp(X2 ).
+Quando "si sa poco" di una variabile casuale, la disuguaglianza di Markov
+risulta utile.
+Disuguaglianza di Markov. Sia X una variabile casuale non negativa, e
+sia v > 0. Allora
+Exp[X ]
+Pr [X ≥ v ] ≤
+.
+v
+Dim. Supponiamo X assuma valori in S. Risulta:
+X
+Exp[X ] =
+Pr [X = s] · s
+s∈S
+
+≥
+
+X
+
+Pr [X = s] · 0 +
+
+s∈S,s<v
+
+X
+
+Pr [X = s] · v
+
+s∈S,s≥v
+
+≥ v · Pr [X ≥ v].
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+15 / 26
+
+Varianza
+La varianza di una variabile causale X , denotata con Var [X ], misura
+quanto X devia dal valore medio.
+def
+
+Var [X ] = Exp[(X − Exp[X ])2 ] = Exp[X 2 ] − Exp[X ]2 .
+Si può facilmente mostrare che
+Var [aX + b] = a2 Var [X ].
+Inoltre, per variabili causali 0/1 Xi risulta Var [Xi ] ≤ 1/4 perchè in questo
+caso Exp[Xi ] = Exp[Xi2 ] e quindi
+Exp[Xi2 ] − Exp[Xi ]2 = Exp[Xi ](1 − Exp[Xi ])
+che ha valore massimo per Exp[Xi ] = 1/2 da cui Var [Xi ] ≤ 1/4.
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+16 / 26
+
+Disuguaglianza di Chebychev
+
+Disuguaglianza di Chebychev. Sia X una variabile casuale e sia δ > 0.
+Allora
+Var [X ]
+Pr [|X − Exp[X ]| ≥ δ] ≤
+.
+δ2
+Dim. Applicando la disuguaglianza di Markov.
+
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+17 / 26
+
+Un po’ di esempi semplici
+
+Sia Ω = {T , C } (lancio di una moneta). Esempi di distribuzioni sono:
+Pr [T ] = 1/2 Pr [C ] = 1/2
+Pr [T ] = 1/4 Pr [C ] = 3/4
+
+⇒ Pr [Ω] = 1 (distribuzione uniforme)
+⇒ Pr [Ω] = 1 (distribuzione non uniforme)
+
+In generale, se S è un insieme finito di valori e
+X :Ω→S
+
+è tale che
+
+Pr [X = s] =
+
+1
+|S|
+
+∀s ∈ S,
+
+la distribuzione di probabilità si dice uniforme e la variabile aleatoria si dice
+uniformemente distribuita.
+
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+18 / 26
+
+Algoritmi randomizzati e variabili casuali
+
+Sia A un algoritmo probabilistico (o randomizzato, cioè che usa random
+bit).
+Le variabili casuali sono utili per rappresentare l’output di A.
+Precisamente, la variabile casuale A rappresenta i possibili valori - con
+relative probabilità - che l’algoritmo A può dare in output, a seconda delle
+scelte casuali che compie.
+
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+19 / 26
+
+Algoritmi randomizzati e variabili casuali
+
+In uno schema di cifratura
+Gen() → k ∈ K (spazio delle chiavi)
+la variabile casuale K può essere usata per rappresentare i possibili
+k ∈ K che l’algoritmo di generazione delle chiavi può dare in output, a
+seconda delle scelte casuali che effettua
+
+Enck (m) → c ∈ C (spazio dei cifrati)
+la variabile casuale Ck,m può essere usata per rappresentare i possibili
+c ∈ C che, dati k ed m, l’algoritmo di cifratura può dare in output, a
+seconda delle scelte casuali che effettua
+
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+20 / 26
+
+Algoritmi randomizzati e variabili casuali
+Nota: se siamo interessati a valutare la probabilità dei cifrati in generale
+(non per una specifica chiave ed uno specifico messaggio) utilizziamo la
+variabile casuale C definita da
+Pr [C = c] = Pr [EncK (M) = c]
+La distribuzione di C dipende dalle distribuzioni di K ed M e dalle scelte
+casuali che l’algoritmo di cifratura effettua.
+Pr [C = c]
+
+=
+
+X X
+
+Pr [Enck (m) = c|K = k, M = m] · Pr [K = k ∧ M = m]
+
+k∈K m∈M
+
+⇓
+Ck,m
+
+Nelle analisi nel testo non confondete oggetti diversi (e.g., EncK (M) con
+Enck (m)).
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+21 / 26
+
+Algoritmi randomizzati e variabili casuali
+
+Sia ancora Ω = {T , C }. Un altro esempio di distribuzione è:
+Pr [T ] = 1 Pr [C ] = 0
+
+⇒ Pr [Ω] = 1 (distribuzione degenere)
+
+Un algoritmo deterministico può essere visto come un caso particolare degli
+algoritmi probabilistici, in cui la distribuzione di probabilità della variabile
+casuale che rappresenta l’output è degenere, i.e., ha valore 1 in un punto e
+0 in tutti gli altri.
+
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+22 / 26
+
+Famiglie di distribuzioni*
+
+Una famiglia di distribuzioni (distribution ensemble) è una famiglia di
+distribuzioni di probabilità o variabili casuali
+X = {Xi }i∈I ,
+
+dove
+
+Xi denota una distribuzione di probabilità o variabile casuale
+i è l’indice che denota la i-esima distribuzione
+I è l’insieme degli indici e può essere
+un sottoinsieme degli interi
+un insieme di stringhe
+un generico insieme contabile
+
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+23 / 26
+
+Famiglie di distribuzioni*: perchè...
+Studio degli algoritmi: utilizziamo l’analisi asintotica per capire, al
+crescere della taglia dell’input, come si comportano gli algoritmi progettati.
+e.g., si pensi agli algoritmi di ordinamento e all’analisi della loro
+efficienza in funzione del numero di elementi da ordinare
+Crittografia: valuteremo asintoticamente il comportamento degli schemi
+crittografici al crescere di un parametro, detto parametro di sicurezza,
+passato come input allo schema.
+Pertanto, al variare del parametro di sicurezza, avremo una famiglia di
+schemi e, per modellarne il comportamento, avremo bisogno di una
+famiglia di distribuzioni.
+Nota: in buona parte del testo tuttavia la presentazione viene semplificata
+e le famiglie di distribuzioni non vengono usate.
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+24 / 26
+
+Qualche esempio di ensemble
+Consideriamo l’insieme {0, 1}n delle stringhe di n bit. L’ensemble
+{Un }n∈N
+rappresenta l’ensemble che contiene le distribuzioni di probabilità uniformi
+sugli insiemi di stringhe lunghe n bit
+U1
+0
+1
+prob 1/2 1/2
+U2
+00 01 10 11
+prob 1/4 1/4 1/4 1/4
+...
+Un 00 . . . 0 . . . 11 . . . 1
+prob 1/2n
+1/2n
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+25 / 26
+
+Qualche esempio di ensemble
+Un esempio invece diverso dall’ensemble uniforme è il seguente. Sia
+{Pn }n∈N
+l’ensemble delle distribuzioni di probabilità su {0, 1}n che associano
+probabilità uniforme alle prime 2n−1 stringhe e 0 alle restanti
+P1 0 1
+prob 1 0
+P2
+00 01 10 11
+prob 1/2 1/2 0 0
+...
+Pn 00 . . . 0 . . . 01 . . . 1 10 . . . 0 . . . 11 . . . 1
+prob 1/2n−1
+1/2n−1
+0
+0
+Paolo D’Arco (Unisa)
+
+Richiami di probabilità
+
+EC-2025
+
+26 / 26
+
+

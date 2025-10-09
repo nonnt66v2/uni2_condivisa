@@ -46,6 +46,7 @@ Che significa che non è sicuro, esiste un avversario efficiente e in grado di r
 schermo, giusto?
 Allora se esistesse questo avversario io ne potrei costruire un'altro che, servendosi di questo
 come sabrukin, è in grado di risolvere il problema che ritenevo difficile o di rompere la
+
 costruzione di base che è utilizzata come diciamo black box o come blocco costitutivo
 all'interno della costruzione più complessa.
 Ma poiché assumo che questa costruzione di base è sicura o che il problema sia difficile,
@@ -94,6 +95,7 @@ Immaginando che dall'altra parte c'è il challenger, quindi dicendo, questi sono
 quali voglio essere sfidato, il distinguere sceglie il beep casuale.
 Che dice cifra m zero, cifra M uno e costruisce guardate la cifra dura immergendo quella
 dell'istanza del suo problema.
+
 Quindi sta cifrando n di B con Omega Dando questo cifrato ad a.
 Pa restituirà?
 Un bit.
@@ -142,6 +144,7 @@ Allora che cosa ho fatto? Ho costruito di che è un algoritmo PB.
 Perché? Perché i pasti che fa qua dentro, credo che siate tutti convinti, sono passi di vostro
 Stato. L'unica cosa che pesa è questo algoritmo è altro.
 Quindi se hai il PPPD per come è stato progettato il Pd.
+
 Depp.
 E se g è un generatore, queste che cosa sono? Sono proprio le due probabilità.
 Che vengono nella definizione di pseudo casualità. Nella definizione di pseudo casualità io
@@ -190,6 +193,7 @@ Parlante 5 00:13:59
 Comunque le indagini la fisetta.
 Parlante 2 00:14:01
 Quindi in questo caso.
+
 Tutto il problema difficile sto assumendo che una costruzione di base perché il generatore è
 un blocco che viene utilizzato.
 Parlante 5 00:14:11
@@ -238,6 +242,7 @@ Se invece Omega non è casuale, io costruisco. La cifratura, però è qualcosa c
 l'avversario.
 Non riconosce bene, cioè se c'è una signora casuale noi lo valutiamo. Dopo vediamo che
 l'avversario riesce a distinguere con probabilità esattamente un mezzo non ha nessun
+
 vantaggio. Se però è per primo tipo, noi abbiamo supposto che a lavora bene contro quello
 scritto e quindi distinguo contro bandalità maggiore di mezzi. Ma allora il mio Pd?
 Da uno se l'avversario distingue e da zero se non di distingue.
@@ -286,6 +291,7 @@ Quando faccio queste prove l'importante è che di.
 In generale l'algoritmo a primo che abbiamo chiamato riduzione.
 Per sfruttare a ripreni perfettamente l'ambiente per il quale a è progettato, per intenderci,
 ragazzi come quando voi scrivete un programma e utilizzate una suppl di una funzione di
+
 libretto, quando invocate la funzione di libreria dovete passare i parametri che la funzione di
 sospetto.
 È solo in quel caso, funziona perfettamente, perché se invece passate anche non è detto
@@ -333,6 +339,7 @@ essere trascurabile nel caso concreto sto richiedendo che questa differenza deve
 minore di AY per ogni d esegue al più per più basso.
 Giusto quindi se io faccio la stessa prova con valori concreti?
 Ma allora?
+
 L'avversario viva. Che cosa è costruito? Da un punto di vista del calcolo è costruito da i
 passi che esegue hahaha più altri passi che effettua lui, cioè lancia la monetina, fa un
 ixorder.
@@ -381,6 +388,7 @@ Potenze dovutazionali riguardiamo, però la risposta alla sua domanda è, è l'a
 degli algoritmi, dell'efficienza degli algoritmi di cui disponiamo e della potenza di classe
 sublispondente.
 Parlante 4 00:27:51
+
 Per quanto riguarda la probabilità, invece?
 Parlante 2 00:27:55
 La probabilità questa è un po' più difficile.
@@ -428,6 +436,7 @@ interesserebbe avere una definizione in cui Alice voi inviate 150 messaggi a Bob
 sicura che i suoi messaggi sono sicuri rispetto anche ad un avversario che li ascolta tutti i
 150, cioè vogliamo la garanzia che non è che un avversario ne ascolta 100 e poi gli altri 50.
 Riesce per esempio a decifrare o riesce a capire informazioni?
+
 E allora quello che voglio fare oggi nella prima parte è introdurre formalmente le altre nozioni
 di sicurezza di cui, se vi ricordate, abbiamo anche parlato un po' di tempo. Fabio parlato di
 attacchi di tipo monflintex, cioè semplice. Quindi voglio un attimo ragionare su queste
@@ -476,6 +485,7 @@ Di doverne inviare denuncia di B la scelta non sarà tra l'esempio m zero e -1, 
 M0AMON.
 Parlante 2 00:34:23
 E quindi che cosa farebbe l'avversario? Per esempio un po' di messaggi?
+
 Li manda al Challenger?
 Parlante 6 00:34:32
 Sì, però per quello che dicevo, quella il significato devono essere di della stessa lunghezza.
@@ -524,6 +534,7 @@ Dato che dell'esperimento è zero, che significa che l'avversario ha fallito? E 
 immaginare, la definizione di sicurezza resta fondamentalmente la stessa con un nuovo
 esperimento, cioè.
 Uno schema di rete che è.
+
 E ha cifrature multiple, indistinguibili se quando andiamo a considerare il nuovo
 esperimento.
 Qualsiasi avversario efficiente riesce a vincere con una probabilità che è intrascurabilmente
@@ -572,6 +583,7 @@ difficile. Mette riuscirebbe a dedurre se riuscisse.
 5.
 E allora?
 Ma se l'avversario non riesce a capire se il ci con uno non C con d corrisponde alla.
+
 Prima dice tu alla seconda lista.
 Allora che cosa sto dicendo? Sto dicendo che il quadro non riguarda.
 E quindi, ricordando l'equivalenza di distribuibilità semantica di cui abbiamo parlato, la che
@@ -620,6 +632,7 @@ con il One Time Pad, perché il One time fate supporta avversari molto più pote
 A un ventile più stringente sulla probabilità dico, quello che però ci interessa far vedere è
 che possiamo soddisfare la definizione con schede di cifratura in cui la chiave è piccola e i
 cifrati possono essere gravi, ed è quello che abbiamo fatto la volta scorsa.
+
 Ora però.
 Stiamo ragionando sulle nozioni del fatto e quindi sto cercando di dimostrarvi che
 l'indistinguibilità multipla implica l'indistinbilità singola.
@@ -668,6 +681,7 @@ I ragazzi quindi questo prova?
 Uno schema.
 Che soddisfa.
 La mozione di invisibilità per un messaggio singolo.
+
 Non soddisfa la nozione di indissolubilità per i messaggi energetiche.
 Quindi sicuramente possiamo dedurre visto che abbiamo fornito il Controesempio.
 E la mozione di distinguibilità per i messaggi singoli non implica il soddisfacimento da parte
@@ -716,6 +730,7 @@ Per esempio lo scritto nella Slide sembra un requisito questo della cifratura pr
 che configge dell'operazione di Decifratura perché prendo un messaggio circa una volta
 ottenere il cielo circa un'altra volta ottengo ci vuol dire lo circa un'altra volta ottengo ciclo
 prego tengo stringhe diverse come fa la funzione di decifratura che è deterministica
+
 indipendentemente dal fatto che il dolce i volumi c con due OC con tre a darmi sempre lo
 stesso messaggio.
 Al momento intuitivamente questa cosa mi potrà sembrare estrarre, se vi sembra strano non
@@ -764,6 +779,7 @@ messaggio autonomamente, in realtà sceglie il traduttore messaggio. È un'ipote
 che facciamo? L'avversario potrebbe non trovarsi in questa condizione, però se utilizziamo
 un'ipotesi forte, il nostro schema ci dà una garanzia di sicurezza ancora maggiore.
 Quindi.
+
 Supporremo che l'avversario.
 Possa scegliere due messaggi, si passa al Challenger, il Challenger gli fornisce il cifrato C.
 E l'avversario, ancora una volta, dovrà essere incapace di capire se ci corrisponde alla
@@ -811,6 +827,7 @@ corrispondesse ad una certa posizione geografica, ad una certa città.
 Un'isola come una torre.
 E in pratica?
 Stavano cercando.
+
 Di convincere i generali che era imminente un attacco contro questo aloe però non avevano
 il libretto analisti informazioni a sufficienza.
 Per poter affermare con certezza che AF corrispondesse, diciamo, a quell'approvazione al
@@ -859,6 +876,7 @@ No, lei stava dando di un'altro tipo di problema.
 Parlante 4 01:02:05
 Cioè, prima ancora di inviare il no, no, no, no, allora quella è.
 Parlante 2 01:02:09
+
 Una questione un po' complicata, magari è una questione che.
 È nata già intorno al 2001 Live l'aveva pensato di introdurre all'interno di tutti gli iPhone un
 meccanismo per poter individuare il.
@@ -907,6 +925,7 @@ Ragazzi, che ore sono?
 10:15 vediamo fra 5 minuti di pausa.
 Parlante 8 01:05:39
 Allora ragazzi, però.
+
 Parlante 2 01:05:42
 Per evitare di fare.
 Come l'altro giorno, poi 10 diventano 10, 15 io inizio non prima divinità.
@@ -955,6 +974,7 @@ Per cui saranno lì sempre nuovi, quindi.
 Sì.
 Chiediamo l'orario della cifratura di uno stesso messaggio che vuole, otterremo cifrati
 diverse.
+
 D'accordo.
 L'avversario può inviare ad attivamente quante guerre.
 Quante vuoi di Guess? Ovviamente se stiamo parlando di un algoritmo di tempo colinomiale
@@ -1003,6 +1023,7 @@ Anche perché i riferimenti che abbiamo visto precedentemente, il Challenger sce
 decifrare m zero moderne etico.
 Cifra, il messaggio MDB con la stessa chiave con cui l'oracolo ha prodotto cifrature
 precedentemente.
+
 Da.
 All'avversario e guardate l'avversario.
 Ancora una volta oh.
@@ -1051,6 +1072,7 @@ dobbiamo tener conto dei random e all'interno dell'esperimento abbiamo visto che
 Il Beach viene scelto a caso.
 La chiave viene scelta attraverso la guerra, quindi ci sono.
 Un po' di elementi casuali.
+
 Di cui occorre tenere di vuoto.
 Nell'analisi della probabilità.
 OK.
@@ -1099,6 +1121,7 @@ Che ha bisogno, diciamo, di due.
 Informazioni che vengono.
 Fissate prima dell'inizio dell'esperimento K, che è una chiave di cifratura EB che è un bit che
 stabilisce se.
+
 I messaggi cifrati sono quelli di sinistra.
 In una coppia o sono quelli di destra?
 In particolare vediamo se di.
@@ -1147,6 +1170,7 @@ che dopo cifrati di messaggi di sua scelta.
 D'accordo.
 In questo esperimento, come fa l'avversario a cogliere messaggi?
 Cifrati di messaggi di sua scelta.
+
 Voi ci pensate un attimo, è molto semplice, basta che quando invia i due messaggi 1 0 R
 uno.
 Invio uguale quindi.
@@ -1195,6 +1219,7 @@ Non è.
 Fattibile. Perché? Perché io scelgo tutto l'importo.
 Quindi vi vorrei convincere del fatto che questa formalizzazione prima di tutto.
 Voglio esattamente.
+
 Il contesto di un attacco Cosetta.
 Compie i messaggi uguali riesco ad ottenere cifrati messaggi iniacie quindi stommo
 dell'anno in attacco di tipo josephine, e sto anche cercando di convincervi e utilizzando
@@ -1243,6 +1268,7 @@ Il che significa che questo è un grosso vantaggio che, dato un'offerta, basta c
 CTA sicuro per essere.
 Tranquilli, per essere convinti che lo possiamo usare per messaggi utili.
 Quindi questo è il risultato importante.
+
 L'altra implicazione?
 Che ci serve anche dal punto di vista costruttivo, anche se poi avremo tecniche più efficienti
 per costruire schemi di ciclatura CTA. Silvia è la seguente.
@@ -1290,4 +1316,5 @@ funzioni pseudo casuali, dalle permutazioni di pseudo casuali. Quindi domani mat
 prima volta di definire questi incertezza e se il tempo sarà sufficiente vi fornirò anche un
 esempio di sistema.
 D'accordo.
+
 

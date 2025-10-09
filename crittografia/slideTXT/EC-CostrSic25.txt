@@ -1,0 +1,675 @@
+Costruzioni sicure
+Paolo D’Arco
+pdarco@unisa.it
+Università di Salerno
+
+Elementi di Crittografia
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+1 / 31
+
+Contenuti
+
+1
+
+Generatori pseudocasuali e stream cipher
+
+2
+
+Pseudocasualità
+
+3
+
+Riduzioni
+
+4
+
+Costruzione sicura
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+2 / 31
+
+Costruzioni di schemi di cifratura sicuri
+
+Abbiamo bisogno di blocchi di base:
+Generatori pseudocasuali (pseudorandom generator, PRG)
+Un generatore pseudocasuale G è un algoritmo deterministico efficiente per
+trasformare una stringa uniforme corta, chiamata seme, in una più lunga
+che sembra uniforme
+Studiati a partire dagli anni 0 40
+progettati per superare test statistici ad hoc: primo bit, parità, ...
+nessuna garanzia di robustezza in specifiche applicazioni
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+3 / 31
+
+Generatori pseudocasuali: approccio
+
+Approccio crittografico negli anni 0 80
+un generatore pseudocasuale buono dovrebbe superare tutti i test
+statistici efficienti
+ad ogni osservatore efficiente l’output dovrebbe sembrare una stringa
+uniforme
+Nota: usiamo le espressioni stringa pseudorandom/pseudocasuale e stringa
+uniforme con abuso della terminologia.
+pseudocasualità: proprietà di una distribuzione di stringhe
+uniformità: proprietà di una distribuzione di stringhe
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+4 / 31
+
+Distribuzione pseudocasuale
+
+Che cosa significa per una distribuzione di probabilità essere pseudocasuale?
+Sia Dist una distribuzione su stringhe di ` bit. È pseudocasuale
+se l’esperimento in cui una stringa viene campionata in accordo a Dist
+è indistinguibile dall’esperimento in cui una stringa di lunghezza `
+viene campionata in accordo alla distribuzione uniforme
+Risulta, cioè, impossibile per ogni algoritmo PPT dire, con chance
+significativamente migliori di quelle offerte dal lancio di una moneta, se
+essa derivi da Dist o dalla distribuzione uniforme
+Discende che una stringa pseudocasuale è tanto buona quanto una
+uniforme.
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+5 / 31
+
+Generatore pseudocasuale (informale)
+
+Sia G : {0, 1}n → {0, 1}` e sia Dist la distribuzione sulle stringhe di ` bit
+ottenuta
+scegliendo uniformemente a caso s ∈ {0, 1}n
+dando in output G (s)
+G è PRG se e solo se Dist è pseudocasuale.
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+6 / 31
+
+Generatore pseudocasuale (formale)
+Definizione 3.14. Sia `(n) un polinomio e G un algoritmo deterministico di
+tempo polinomiale tale che, per ogni n ed s ∈ {0, 1}n , G (s) è una stringa
+di `(n) bit. Diremo che G è un PRG se valgono le seguenti condizioni:
+1
+
+Espansione: per ogni n risulta `(n) > n
+
+2
+
+Pseudocasualità: per ogni algoritmo D PPT, esiste una funzione
+trascurabile negl(n) tale che
+|Pr [D(G (s)) = 1] − Pr [D(r ) = 1]| ≤ negl(n)
+
+dove la prima probabilità è calcolata su
+scelta uniforme di s ∈ {0, 1}n
+random bit di D
+
+Paolo D’Arco (Unisa)
+
+e la seconda su
+scelta uniforme di
+r ∈ {0, 1}`(n)
+random bit di D
+
+Costruzioni sicure
+
+EC-2025
+
+7 / 31
+
+Una costruzione non sicura
+Esempio 3.15. Sia G : {0, 1}n → {0, 1}n+1 tale che G (s) = s||
+
+Ln
+
+i=1 si .
+
+Distinguisher D:
+su input ω dà in output 1 se e solo se il bit finale di ω è l’ xor di tutti
+i precedenti.
+Risulta:
+se l’input di D è G (s), allora Pr [D(G (s)) = 1] = 1
+se l’input di D è r , allora Pr [D(r ) = 1] = 1/2
+la probabilità che l’ultimo bit sia uguale all’xor dei precedenti è 1/2
+perchè r viene scelta in modo uniforme in {0, 1}n+1
+
+Poichè la differenza è
+|Pr [D(G (s)) = 1] − Pr [D(r ) = 1]| = |1 − 1/2| = 1/2,
+costante (non trascurabile), G non è pseudocasuale.
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+8 / 31
+
+Osservazioni
+
+La distribuzione sugli output di un generatore pseudocasuale G è lontana
+da quella uniforme. Per rendersene conto, sia `(n) = 2n. Allora
+G : {0, 1}n → {0, 1}2n .
+Poichè ci sono 2n possibili semi, G può generare al più 2n delle 22n possibili
+stringhe.
+Equivalentemente, la frazione di stringhe di 2n bit che G può generare è
+2n /22n = 1/2n .
+Si consideri il seguente esempio, in cui n = 4
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+9 / 31
+
+Osservazioni
+
+Nell’esempio G può generare soltanto 24 = 16 stringhe di 8 bit,
+dell’universo delle possibili 28 = 256 stringhe di 8 bit. La stragrande
+maggioranza non può essere generata.
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+10 / 31
+
+Osservazioni
+
+Data una quantità illimitata di tempo è pertanto banale distinguere.
+Un distinguisher D di tempo esponenziale tenta tutti i semi s ∈ {0, 1}n e
+dà in output 1 se e solo se G (s) = ω per qualche s.
+Si noti che, presa una stringa ω uniforme in {0, 1}2n , risulta
+Pr [G (s) = ω] ≤ 1/2n . Pertanto
+|Pr [D(G (s)) = 1] − Pr [D(r ) = 1]| = 1 − 1/2n non trascurabile.
+Quindi D distingue attraverso una ricerca esaustiva del seme in s ∈ {0, 1}n .
+Ciò non contraddistingue la pseudocasualità di G perchè D non è
+efficiente computazionalmente.
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+11 / 31
+
+Osservazioni
+Il seme di G equivale alla chiave in uno schema di cifratura simmetrico
+deve essere scelto in modo uniforme e tenuto segreto
+abbastanza lungo da evitare ricerche esaustive
+La lunghezza del seme equivale al parametro di sicurezza.
+
+Domanda: ma esistono generatori pseudocasuali?
+Nessuna prova incondizionata, prova sotto assunzioni.
+Se esistono funzioni one-way (a senso unico), allora esistono PRG (... ci
+torneremo).
+In pratica abbiamo buone costruzioni che utilizzano stream cipher.
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+12 / 31
+
+Stream cipher
+
+La definizione di PRG ha due limitazioni
+il fattore di espansione è fisso
+l’intero output viene prodotto tutto d’un colpo
+Al contrario, uno stream cipher
+non ha un limite al fattore di espansione
+produce bit di output gradualmente
+Stream cipher: coppia di algoritmi (Init, GetBits) deterministici, dove
+Init(s, IV ) dà in output uno stato iniziale s0
+GetBits(sti−1 ) dà in output (sti , y ) (prox stato, bit/stringa di bit)
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+13 / 31
+
+PRG da uno stream cipher
+
+Dato uno stream cipher ed un fattore di espansione `, possiamo definire
+G` : {0, 1}n → {0, 1}` come segue:
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+14 / 31
+
+Sicurezza di uno stream cipher
+
+Uno stream cipher è sicuro (in un senso di base) se non prende in input IV
+e, per ogni polinomio `(n) > n, la funzione G` è un generatore
+pseudocasuale con fattore di espansione `.
+
+In altre parole, lo stream cipher è sicuro se G` è un PRG
+
+Nelle prossime lezioni vedremo alcune costruzioni usate in pratica di stream
+cipher.
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+15 / 31
+
+Prove (dimostrazioni) per riduzione
+Provare che una costruzione è computazionalmente sicura significa
+far affidamento su assunzioni (aff. non provate, congetturate vere)
+un problema matematico è difficile
+qualche primitiva crittografica è sicura
+
+provare che, basandosi sulle assunzioni fatte, la costruzione risulta
+sicura.
+Generalmente procederemo come segue:
+Presenteremo una riduzione esplicita che mostra come trasformare un Adv
+efficiente A che ha successo nel rompere la costruzione data in un Adv
+efficiente A0 che
+risolve il problema matematico supposto difficile
+rompe la primitiva crittografica assunta sicura
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+16 / 31
+
+Struttura di una riduzione
+
+Cominciamo con una assunzione: il problema X è difficile, i.e., non può
+essere risolto con algoritmi PPT.
+Vogliamo provare che la costruzione Π è sicura
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+17 / 31
+
+Struttura di una riduzione
+
+1
+
+2
+
+Fissiamo un Adv A PPT che attacca Π con probabilità di successo
+(n)
+Costruiamo A0 PPT (detto la riduzione) che risolve X usando A come
+subroutine. A0 non conosce il funzionamento interno di A; sa solo che
+serve ad attaccare Π.
+Quindi, data x, un’istanza di X , A0 simula per A un’istanza della
+costruzione Π (in cui immerge x) in modo tale che:
+1
+
+2
+
+A pensa di star interagendo con Π, i.e., ha la stessa vista (o molto
+simile) che ha quando interagisce realmente con Π
+se A ha successo nel rompere Π sull’istanza che ha ricevuto da A0 ,
+allora A0 risolve l’istanza x del problema X che ha ricevuto in input con
+probabilità almeno 1/p(n)
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+18 / 31
+
+Struttura di una riduzione
+
+3. Le condizioni 2.1 e 2.2 implicano che
+A0 risolve X con probabilità almeno (n)/p(n). Pertanto, se (n) è non
+trascurabile, anche (n)/p(n) è non trascurabile
+A0 è efficiente se A è efficiente.
+
+4. Data l’assunzione di difficoltà sul problema X , concludiamo che nessun
+Adv A PPT può avere successo nel rompere Π con probabilità non
+trascurabile. Quindi, Π è computazionalmente sicuro.
+Costruiremo ora uno schema di cifratura utilizzando un PRG ed
+esemplificheremo la tecnica provandone la sicurezza.
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+19 / 31
+
+Cifratura sicura con un PRG per messaggi di lunghezza fissa
+Idea:
+il one-time pad cifra tramite m ⊕ r , con r stringa scelta
+uniformemente a caso
+qui invece cifriamo tramite m ⊕ G (s), con G (s) stringa pseudocasuale
+le parti devono condividere il seme (chiave segreta)
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+20 / 31
+
+Cifratura sicura con un PRG
+
+Per ogni k ∈ {0, 1}n e per ogni m ∈ {0, 1}` , risulta:
+G (k) ⊕ c = G (k) ⊕ (G (k) ⊕ m) = m
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+21 / 31
+
+Cifratura sicura con un PRG
+Teorema 3.16 Se G è un PRG, la Costruzione 3.17 realizza uno schema di
+cifratura a chiave privata per messaggi di lunghezza fissa che ha cifrati
+indistinguibili in presenza di un eavesdropper.
+Dim. Facciamo vedere che, per ogni Adv A PPT, esiste una fun. tras.
+negl(n) tale che
+eav
+Pr [PrivKA,Π
+(n) = 1] ≤ 1/2 + negl(n).
+
+Intuizione della prova:
+se Π usasse un pad uniforme invece di G (k), Π sarebbe identico allo
+schema one-time pad ed A vincerebbe nell’esperimento con prob. 1/2
+pertanto, se A fosse in grado di vincere nel nostro caso con probabilità
+significativamente maggiore di 1/2, allora A potrebbe essere usato per
+distinguere G (k) da una stringa uniforme
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+22 / 31
+
+Cifratura sicura con un PRG
+Procediamo formalmente, esibendo la riduzione.
+Costruiamo D che distingue G (k) da r , utilizzando A e la sua abilità nel
+capire quale messaggio tra m0 ed m1 è stato cifrato
+Probabilità di successo di D relata alla probabilità di successo di A.
+
+Distinguisher D:
+Riceve in input una stringa ω ∈ {0, 1}`(n)
+1
+
+esegue A(1n ) per ottenere m0 , m1 ∈ {0, 1}`(n)
+
+2
+
+sceglie uniformemente b ∈ {0, 1} e pone c := mb ⊕ ω
+
+3
+
+dà c ad A ed ottiene da A il bit b 0
+
+4
+
+se b 0 = b, dà in output 1; altrimenti, dà in output 0
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+23 / 31
+
+Cifratura sicura con un PRG
+
+Osservazioni:
+eav (n) per A ed osserva se A ha successo
+D emula l’esperimento PrivKA,Π
+o meno. Nel primo caso, D pensa che ω debba essere pseudocasuale;
+nel secondo, uniforme.
+
+D è PPT se A è un Adv PPT.
+∼
+
+∼
+
+∼
+
+∼
+
+Al fine di analizzare D, definiamo lo schema Π= (Gen, Enc, Dec).
+∼
+
+È esattamente il one-time pad: Gen (1n ) riceve in input il parametro di
+sicurezza n e dà in output una chiave uniforme k ∈ {0, 1}`(n)
+∼
+
+La segretezza perfetta di Π
+
+Paolo D’Arco (Unisa)
+
+⇒
+
+Pr [PrivK eav∼ (n) = 1] = 1/2.
+
+Costruzioni sicure
+
+A,Π
+
+EC-2025
+
+24 / 31
+
+Cifratura sicura con un PRG
+Ora, segue che:
+1 se ω è una stringa uniforme in {0, 1}`(n) allora
+la vista di A quando eseguito come subroutine da D = la vista di A in
+PrivK eav∼ (n)
+A,Π
+
+poichè D dà in output 1 quando A ha successo, risulta
+Prω←{0,1}`(n) [D(ω) = 1] = Pr [PrivK eav∼ (n) = 1] = 1/2.
+A,Π
+
+2
+
+se, invece, ω = G (k), dove k è una stringa uniforme in {0, 1}n allora
+la vista di A quando eseguito come subroutine da D = la vista di A in
+eav
+PrivKA,Π
+(n)
+poichè D dà in output 1 quando A ha successo, risulta
+eav
+Prk←{0,1}n [D(G (k)) = 1] = Pr [PrivKA,Π
+(n) = 1].
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+25 / 31
+
+Cifratura sicura con un PRG
+eav (n) = 1] = 1/2 + non-negl(n) allora
+Se risultasse Pr [PrivKA,Π
+eav
+|Pr [PrivK eav∼ (n) = 1] − Pr [PrivKA,Π
+(n) = 1]|
+A,Π
+
+= |1/2 − (1/2 + non-negl(n))| = non-negl(n)
+cioé, per le precedenti,
+|Prω←{0,1}`(n) [D(ω) = 1] − Prk←{0,1}n [D(G (k)) = 1]| = non-negl(n).
+Dunque D é PPT e distingue con probabilitá non-negl(n)! Ma G per
+ipotesi è un PRG. Pertanto, non puó essere. Deve esistere negl(n) tale che
+|Prω←{0,1}`(n) [D(ω) = 1] − Prk←{0,1}n [D(G (k)) = 1]| ≤ negl(n)
+che implica
+eav
+Pr [PrivKA,Π
+(n) = 1] ≤ 1/2 + negl(n).
+
+4
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+26 / 31
+
+Semplificazione della prova: alternativa alla slide precedente
+G per ipotesi è un PRG e D è PPT. Pertanto, esiste negl(n) tale che
+|Prω←{0,1}`(n) [D(ω) = 1] − Prk←{0,1}n [D(G (k)) = 1]| ≤ negl(n).
+Ma allora,
+eav
+|Pr [PrivK eav∼ (n) = 1] − Pr [PrivKA,Π
+(n) = 1]| ≤ negl(n),
+A,Π
+
+ovvero
+eav
+|1/2 − Pr [PrivKA,Π
+(n) = 1]| ≤ negl(n),
+
+che implica
+eav
+Pr [PrivKA,Π
+(n) = 1] ≤ 1/2 + negl(n).
+
+Poichè A è un Adv PPT arbitrario, possiamo concludere che Π ha cifrati
+indistinguibili in presenza di un eavesdropper. 4
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+27 / 31
+
+Commenti
+Commenti:
+la dimostrazione non è incondizionata. Π è sicuro se G è un PRG
+abbiamo ridotto il problema di rompere il G al problema di rompere Π
+l’approccio che consiste nel basare la sicurezza di costruzioni di alto
+livello su costruzioni di basso livello ha diversi vantaggi
+è più facile progettare primitive di basso livello
+è più facile l’analisi rispetto ad una definizione più semplice
+una buona primitiva può essere usata in molte costruzioni di alto livello
+
+Quale vantaggio abbiamo rispetto al one-time pad?
+Una chiave k di pochi bit, e.g., 128, permette di cifrare messaggi
+molto lunghi, e.g., di 1 GB
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+28 / 31
+
+Limitazione concreta
+Come derivare una limitazione concreta alla sicurezza di Π usando una
+limitazione concreta alla sicurezza di G ?
+Fissiamo n e assumiamo che G sia (t, )-pseudocasuale per questo n.
+⇒ ∀D che esegue in tempo al più t,
+|Pr [D(r ) = 1] − Pr [D(G (s)) = 1]| ≤ .
+Per esempio, potremmo avere t ≈ 280 ed  ≈ 2−60 .
+Possiamo far vedere che Π è (t − c, )-EAV-sicuro per qualche costante c
+piccola, i.e., ∀A che esegue in tempo al più t − c, risulta
+eav
+Pr [PrivKA,Π
+(n) = 1] ≤ 1/2 + .
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+29 / 31
+
+Limitazione concreta
+Infatti, sia A un avversario arbitrario di tempo al più t − c. Il distinguisher
+D che abbiamo costruito fa ben poco oltre ad invocare A ed eseguirlo.
+Ponendo c al valore opportuno per tener conto del lavoro aggiuntivo di D,
+risulta il tempo totale di esecuzione di D al più (t − c) + c = t.
+L’assunzione che G sia un PRG implica che
+|Pr [D(r ) = 1] − Pr [D(G (s)) = 1]| ≤ 
+e, quindi, ripetendo gli stessi passi della riduzione, si ottiene che
+eav
+Pr [PrivKA,Π
+(n) = 1] ≤ 1/2 + .
+
+Nota che stiamo parlando di valori concreti. Il parametro di sicurezza n è
+fissato all’inizio e la valutazione è per valori specifici, non asintotica.
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+30 / 31
+
+Appendice: visualizzazione prova
+
+Paolo D’Arco (Unisa)
+
+Costruzioni sicure
+
+EC-2025
+
+31 / 31
+
+

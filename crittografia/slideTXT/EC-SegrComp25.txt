@@ -1,0 +1,524 @@
+Sicurezza computazionale
+Paolo D’Arco
+pdarco@unisa.it
+Università di Salerno
+
+Elementi di Crittografia
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+1 / 24
+
+Contenuti
+
+1
+
+Segretezza computazionale e pseudocasualità
+
+2
+
+Approccio concreto
+
+3
+
+Approccio asintotico
+
+4
+
+Motivazioni
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+2 / 24
+
+Cifratura simmetrica
+
+La segretezza perfetta ha limitazioni intrinseche
+La crittografia moderna nasce dall’esigenza di superarle
+Concetti chiave:
+Segretezza computazionale: una chiave può essere usata per cifrare
+molti messaggi lunghi, e.g., chiave di 128 bit per diversi GigaByte di
+dati
+Più debole di quella perfetta ma ... sufficiente
+
+Pseudocasualità (pseudorandomness): cattura l’idea che un oggetto
+può sembrare completamente casuale anche se non lo è
+Centrale per lo sviluppo di tutta la crittografia moderna, con
+implicazioni in altri campi
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+3 / 24
+
+Cifratura simmetrica
+
+Più in dettaglio, la segretezza perfetta garantisce
+assolutamente nessuna informazione per l’Adv che ascolta
+Adv ha potere illimitato
+Da un punto di vista pratico uno schema che
+rivela informazioni con probabilità 2−60
+ad Adv che possono investire 200 anni di sforzo computazionale
+è ancora molto buono.
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+4 / 24
+
+Cifratura simmetrica
+
+Le definizioni di sicurezza che tengono di conto
+i limiti computazionali dell’Adv
+ammettono una piccola probabilità di errore
+vengono dette computazionali (per distinguerle da quelle basate sulla
+Teoria dell’Informazione)
+In questo caso
+la sicurezza è soltanto garantita rispetto ad Adv efficienti
+Adv possono potenzialmente avere successo ma soltanto con
+probabilità molto piccola.
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+5 / 24
+
+Cifratura simmetrica
+
+Discende che
+Le risorse richieste per "rompere" uno schema devono essere maggiori
+di quelle di cui Adv può disporre
+Le probabilità devono essere realmente piccole
+Ci sono due approcci per sviluppare una teoria significativa
+Concreto
+Asintotico
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+6 / 24
+
+Approccio concreto
+
+Limita esplicitamente la probabilità di successo massima di qualsiasi Adv
+probabilistico che esegue per una specificata quantità di tempo
+Uno schema è (t, )-sicuro se qualsiasi Adv che può eseguire per tempo
+al più t ha successo nella rottura dello schema con probabilità al più .
+Parametri reali potrebbero essere oggi: t = 280 cicli di CPU,  = 2−60 .
+Esempio 3.1. I moderni schemi di cifratura simmetrici sono considerati
+quasi ottimali se, quando la chiave è lunga n bit (spazio delle chiavi 2n
+elementi) qualsiasi Adv che esegue per tempo t ha successo nella rottura
+dello schema con probabilità al più 2ctn , per qualche costante c fissata.
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+7 / 24
+
+Approccio concreto
+
+La condizione precedente corrisponde ad un attacco di forza bruta
+Essenzialmente dice che non ci sono attacchi migliori della ricerca esaustiva
+Assumiamo c = 1, lunghezza della chiave 64 bit ed un PC con 16 core che
+eseguono 4 × 109 cicli per secondo.
+La ricerca esaustiva richiede:
+264
+secondi, che corrispondono a circa 9 anni
+4×109 ×16
+
+La lunghezza raccomandata oggi per la chiave è 128 bit.
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+8 / 24
+
+Approccio concreto
+
+Per avere un’idea di quanto siano grandi questi numeri ...
+2128 è la cardinalità dello spazio delle chiavi
+258 ≈ il numero di secondi di vita dell’Universo dal Big Bang ad oggi
+E per avere un’idea di quanto siano piccole le probabilità ...
+Se un Adv ha successo in un anno di tempo con prob. 2−60 , è molto più
+probabile che Alice e Bob siano colpiti entrambi da un fulmine nello stesso
+periodo di tempo
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+9 / 24
+
+Svantaggi dell’approccio concreto
+
+Difficoltà di interpretazione di un’affermazione.
+Nessun Adv che esegue per 5 anni ha successo con prob. maggiore di 
+
+con quanto potere computazionale?
+tiene conto di sviluppi futuri (legge di Moore)?
+considera implementazioni generiche o ad hoc degli attacchi?
+cosa possiamo dire di un Adv che esegue per 2 anni?
+cosa di un Adv che esegue per 10 anni?
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+10 / 24
+
+Approccio asintotico
+Introduce un parametro di sicurezza n intero
+Parametrizza sia lo schema che le parti coinvolte: partecipanti, Adv
+Può essere pensato al momento come la lunghezza della chiave
+È noto ad Adv
+I tempi di esecuzione di Adv, dei partecipanti e la prob. di successo sono
+funzioni di n.
+Avversari efficienti: algoritmi probabilistici di tempo polinomiale in n
+Partecipanti: algoritmi probabilistici di tempo polinomiale in n
+Probabilità di successo piccola: probabilità al crescere di n più piccola
+dell’inverso di ogni polinomio in n, i.e., 1/p(n), dette probabilità
+trascurabili (negligible)
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+11 / 24
+
+Approccio asintotico
+
+Usando l’acronimo PPT per probabilistico di tempo polinomiale diremo che
+Uno schema è sicuro se qualsiasi Adv PPT ha successo nella rottura dello
+schema con al più probabilità trascurabile
+Questa nozione è asintotica perchè la sicurezza dipende dal comportamento
+dello schema per valori del parametro n sufficientemente grandi.
+Esempio 3.2 Disponiamo di uno schema asintoticamente sicuro. Un Adv
+che
+esegue per n3 minuti (tempo polinomiale)
+1
+ha successo con prob. 240 · 2−n (prob. trascurabile. i.e., < p(n)
+)
+
+riesce
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+12 / 24
+
+Approccio asintotico
+per n ≤ 40, esegue per 403 minuti (6 settimane), ed ha successo con
+prob. 1.
+per n = 50, esegue per 503 minuti (3 mesi), ed ha successo con prob.
+1
+≈ 1000
+.
+per n = 500, esegue per 5003 minuti (200 anni), ed ha successo con
+1
+.
+prob. 2460
+Il parametro di sicurezza n è un meccanismo che permette di calibrare la
+sicurezza dello schema al livello desiderato.
+Relativamente agli schemi di cifratura
+guardare al parametro di sicurezza n come alla lunghezza della chiave
+corrisponde essenzialmente al fatto che il tempo per una ricerca
+esaustiva cresce esponenzialmente nella lunghezza della chiave
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+13 / 24
+
+Approccio asintotico
+
+Nota: incrementando n, incrementa anche il tempo di esecuzione per le
+parti oneste.
+Occorre trovare un giusto equilibrio tra
+tempo richiesto alle parti oneste (più piccolo possibile)
+tempo richiesto all’avversario (più grande possibile)
+probabilità di successo (più piccole possibili)
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+14 / 24
+
+Approccio asintotico
+Esempio 3.3 Computer più veloci giocano a favore delle parti oneste.
+Consideriamo un protocollo crittografico in cui:
+le parti oneste eseguono per 106 · n2 cicli di CPU
+n
+
+Adv esegue per 108 · n4 cicli di CPU, ed ha successo con prob. 2− 2 .
+Per computer a 2GHz, ed n = 80
+le parti oneste eseguono per 106 · 802 cicli di CPU, 3, 2 secondi
+Adv esegue per 108 · 804 cicli di CPU, circa 3 settimane, ed ha
+successo con prob. 2−40 .
+Per computer a 8GHz, ed n = 160 (incrementando la lunghezza della
+chiave)
+le parti oneste eseguono per 106 · 1602 cicli di CPU, ancora 3, 2 secondi
+Adv esegue per 108 · 1604 cicli di CPU, più di 13 settimane, ed ha
+successo con prob. 2−80 .
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+15 / 24
+
+Approccio asintotico
+
+Pertanto, computer più veloci ⇒ lavoro di Adv più difficile.
+Nota: anche quando si usa l’approccio asintotico, garanzie di sicurezza
+concrete sono necessarie in pratica. Come gli esempi mostrano, solitamente
+una valutazione asintotica può essere convertita in limitazioni di sicurezza
+concrete, per ogni valore di n.
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+16 / 24
+
+Approccio asintotico in dettaglio
+Algoritmi efficienti.
+A esegue in tempo polinomiale se esiste un polinomio p(·) tale che, per
+ogni x ∈ {0, 1}∗ , A(x) termina in al più p(|x|) passi, dove |x| indica la
+lunghezza dell’input.
+Come anticipato, progetteremo schemi in funzione del parametro di
+sicurezza n
+forniremo, pertanto, il parametro n scritto in unario, i.e., 1n (una
+stringa di n valori 1) come input agli algoritmi esplicitamente alcune
+volte
+Le parti possono avere altri input ovviamente
+il tempo di esecuzione degli algoritmi corrispondenti deve essere
+polinomiale nella lunghezza totale dei loro input
+Assumiamo per default tutti gli algoritmi come probabilistici: hanno
+accesso ad un nastro di random bit di lunghezza sufficiente. Dà più potere
+agli avversari.
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+17 / 24
+
+Approccio asintotico in dettaglio
+Probabilità di successo trascurabili.
+Definizione 3.4. Una funzione f : N → R + è trascurabile (negligible) se,
+per ogni polinomio positivo p, esiste un n0 tale che, per tutti gli n > n0 ,
+1
+risulta f (n) < p(n)
+.
+≈
+Per ogni costante c, esiste un n0 tale che, per tutti gli n > n0 , risulta
+f (n) < n1c .
+Denoteremo una generica funzione trascurabile con negl.
+Esempio 3.5. Le funzioni
+2−n
+
+√
+
+2− n
+
+ed
+
+n− log n
+
+sono tutte funzioni trascurabili.
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+18 / 24
+
+Approccio asintotico in dettaglio
+Tuttavia, esse tendono a zero in modi diversi.
+Consideriamo, per esempio, il minimo valore di n per cui ogni funzione è
+< 1/n5
+2−n < n−5 se e solo se n > 5 log n, che vale da n = 23
+√
+
+2− n < n−5 se e solo se n > 25 log2 n, che vale da n ≈ 3500
+n− log n < n−5 se e solo se log n > 5, che vale da n = 33
+√
+
+Attenzione: sembrerebbe che 2− n tende a zero √
+più lentamente di n− log n ,
+ma non è così. Per tutti gli n > 65536 risulta 2− n < n− log n . Tuttavia,
+− log n è
+per valori di n più piccoli, una
+√ prob. di successo per Adv pari a n
+preferibile ad una pari a 2− n .
+Lavorare con funzioni trascurabili è tecnicamente vantaggioso perchè
+soddisfano utili proprietà di chiusura.
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+19 / 24
+
+Approccio asintotico in dettaglio
+
+Proposizione 3.6. Siano negl1 (n) e negl2 (n) funzioni trascurabili
+1
+
+la funzione negl3 (n) = negl1 (n) + negl2 (n) è trascurabile
+
+2
+
+per qualsiasi polinomio p, la funzione negl4 (n) = p(n) · negl1 (n)
+
+Osservazioni:
+un evento a prob. trascurabile rimane trascurabile anche se
+l’esperimento che potrebbe generarlo viene ripetuto p(n) volte
+d’altra parte, se una funzione g non è trascurabile, allora la funzione
+def (n)
+non è trascurabile, per ogni polinomio positivo.
+f (n) = gp(n)
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+20 / 24
+
+Sicurezza asintotica in sintesi
+
+Ogni definizione di sicurezza consiste di due parti:
+specifica di cosa è una rottura dello schema
+quale potere ha Adv
+Il framework generale per le definizioni è il seguente
+Uno schema è sicuro se, per ogni Adv PPT A che sferra un attacco di
+qualche tipo formalmente specificato, e per ogni polinomio positivo p,
+esiste un intero n0 tale che, quando n > n0 , la probabilità che A abbia
+successo è minore di 1/p(n).
+Nota: nulla è garantito per valori di n ≤ n0 .
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+21 / 24
+
+Ragioni alla base della scelta asintotica
+
+Arbitrarie ma conformi alle scelte in teoria della complessità
+Algoritmi PPT:
+usuale per rappresentare computazioni efficienti
+indipendenza dal modello computazionale prescelto
+Tesi di Church-Turing estesa: tutti i modelli ragionevoli sono
+polinomialmente equivalenti
+
+proprietà di composizione dei polinomi
+A invoca subroutines. Se A è polinomiale e le subroutine sono
+polinomiali ⇒ l’intero algoritmo è polinomiale
+
+Probabilità trascurabili:
+proprietà di chiusura evidenziate in precedenza
+
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+22 / 24
+
+Necessità del rilassamento
+Segretezza computazionale vs segretezza perfetta
+rispetto ad Adv efficienti, con piccole probabilità di successo
+Entrambe sono essenziali. Per capirlo, supponiamo di avere uno schema di
+cifratura in cui |K | < |M|
+• Dato un cifrato c, Adv può decifrare c usando tutte le chiavi k ∈ K ,
+ottenendo una lista L di messaggi. L 6⊇ M. Pertanto, rivela
+informazioni sul messaggio m a cui c corrisponde
+• Similmente, se Adv possedesse coppie
+(m1 , c1 ), (m2 , c2 ), . . . , (m` , c` )
+potrebbe tentare di decifrare le coppie fino a trovare k ed usarla
+successivamente per decifrare un nuovo c.
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+23 / 24
+
+Necessità del rilassamento
+Ricerche esaustive come le precedenti permettono ad Adv di aver successo
+con probabilità 1 in tempo lineare in |K |
+⇓
+Dobbiamo escludere tali ricerche, limitando il tempo di esecuzione di Adv
+D’altro canto
+• se Adv possedesse ancora le coppie
+(m1 , c1 ), (m2 , c2 ), . . . , (m` , c` )
+potrebbe scegliere a caso una chiave e usare le coppie per verificare la
+correttezza della scelta. Adv esegue in tempo costante e ha successo
+con probabilità 1/|K |
+⇓
+Dobbiamo ammettere piccole probabilità di successo per escludere questi
+attacchi
+Paolo D’Arco (Unisa)
+
+Sicurezza computazionale
+
+EC-2025
+
+24 / 24
+
+

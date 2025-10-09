@@ -1,0 +1,468 @@
+Crittografia Moderna
+A.A. 2025-26
+Segretezza Perfetta: nozioni
+
+Segretezza perfetta
+} Ci occuperemo di schemi di cifratura perfettamente sicuri
+confidenzialità / riservatezza
+
+} Avversari di potere computazionale illimitato
+
+} Useremo definizioni matematiche precise e prove
+} Nessuna assunzione!
+
+Inerenti limitazioni
+
+giustificano la necessità di assunzioni
+
+} Useremo esperimenti ed algoritmi randomizzati
+
+Randomness
+} La generazione di bit casuali è fondamentale
+} La chiave segreta che Alice e Bob condividono deve
+
+essere scelta a caso.
+} Se usassero un qualsiasi algoritmo deterministico alla fine
+
+Adv ne verrebbe a capo
+Non c’è segretezza senza randomness!
+
+Come generare randomness?
+} In principio, per pochi bit random, lanciando una moneta!
+} Tecniche moderne procedono in due fasi
+}
+
+una discreta quantità di dati ad “alta entropia” viene raccolta
+non necessariamente
+uniformi
+
+}
+
+misura
+impredicibilità
+
+i dati vengono elaborati per produrre una sequenza di bit quasi
+indipendenti e distribuiti quasi uniformemente
+
+} Per la prima fase, occorre una sorgente di dati
+
+imprevedibili
+
+Sorgenti
+} Input esterni
+
+ritardo dei dati in transito in rete
+} tempi di accesso all’hard disk
+} misure sulla pressione dei tasti
+} misure sul movimento del mouse
+} …
+}
+
+} Fenomeni fisici
+
+misure del rumore nei dispositivi elettronici
+} misure del decadimento radioattivo
+}
+
+dati “lontani” dalla
+distribuzione uniforme
+
+Estrazione di bit casuali
+} Il processo di “livellamento” dei dati ad alta entropia è
+
+non banale. Ne mostriamo uno.
+Supponiamo di disporre di una sequenza dei risultati del lancio
+di una moneta difettosa, rappresentata in binario
+} La moneta dà:
+}
+
+T=1 con probabilità p
+C=0 con probabilità (1-p)
+
+I lanci sono indipendenti l’uno dall’altro
+} Consideriamo i bit a coppie
+} Se vediamo:
+00
+01
+10
+11
+scriviamo
+/
+0
+1
+/
+}
+
+Estrazione di bit casuali
+10 01 11 01 10 00 11 10 10 01
+1 0
+0 1
+1 1 0
+} la sequenza binaria calcolata è distribuita uniformemente
+} Perchè?
+La probabilità che una coppia produca 0 è: (1-p) p
+} La probabilità che una coppia produca 1 è: p (1-p)
+}
+
+} La generazione e l’uso di random bit è cruciale per la
+
+sicurezza dei protocolli crittografici
+Generatori di numeri casuali devono essere progettati per uso
+crittografico.
+} “General-purpouse” non sono idonei.
+}
+
+Definizioni
+} Schema di cifratura: (Gen, Enc, Dec), M tale che |M|>1
+spazio dei messaggi
+
+} Gen: algoritmo probabilistico di generazione delle chiavi, restituisce
+in accordo ad una distribuzione di probabilità
+
+spazio delle chiavi
+
+} Enc: algoritmo probabilistico di cifratura, prende in input
+e restituisce un cifrato
+spazio dei cifrati
+
+} Dec: algoritmo deterministico di decifratura, prende in input
+e restituisce
+
+Notazioni
+} k
+} c
+
+Gen()
+Enck(m)
+
+} c := Enck(m)
+} m := Deck(c)
+} Useremo la notazione x
+
+output di alg. probabilistici
+
+output di alg. deterministici
+
+S anche per denotare
+l’estrazione di un elemento da un insieme S in accordo
+alla distribuzione uniforme
+
+Condizione di correttezza perfetta
+} Per ogni
+
+, per ogni
+
+, e qualsiasi c
+
+risulta
+
+Enck(m),
+
+Deck(c) = m, con probabilità 1
+
+Nei teoremi e nelle definizioni che seguono faremo riferimento
+alle distribuzioni di probabilità sugli insiemi K, M e C.
+La distribuzione su K dipende da Gen()
+assumeremo uniforme
+
+La variabile casuale K denoterà l’output di Gen()
+
+Variabili casuali
+} La variabile casuale M denoterà il messaggio “in chiaro”
+La Pr[M = m] è la probabilità che m debba essere cifrato
+Non dipende dallo schema di cifratura. Riflette la
+frequenza dei differenti messaggi che le parti si inviano,
+così come l’incertezza che l’avversario Adv ha su di essi.
+e.g., Adv può sapere che i messaggi sono solo due e che:
+Pr[M = “andiamo a cena oggi”] = 0.7
+Pr[M = “usciamo domani”] = 0.3
+
+} Le variabili casuali K ed M si assumono indipendenti
+
+Variabili casuali
+} Fissato uno schema di cifratura ed una distribuzione su M
+
+si determina una distribuzione sullo spazio dei cifrati C,
+ottenuta
+da k generata tramite Gen()
+} scegliendo m in accordo alla distribuzione su M
+} calcolando c
+Enck(m)
+}
+
+scelte casuali
+
+} La variabile casuale C denoterà l’output del processo di
+
+cifratura
+} Nota che C = EncK(M)
+variabili aleatorie
+
+Esempio
+} Consideriamo lo Shift Cipher
+K = {0,…,25}, Pr[K=k] = 1/26, per ogni 𝑘 ∈ 𝐾
+Sia data su M la distribuzione:
+
+Pr[M = a] = 0.7
+
+e
+
+Pr[M = z] = 0.3
+
+Qual è la probabilità che il cifrato sia B?
+Ci sono solo due possibilità: m = a e k = 1, oppure m = z e k = 2
+Poiché le variabili casuali M e K sono indipendenti, risultano:
+Pr[ M = a ∧ K = 1] = Pr[ M = a]  Pr[K = 1] = 0.7  1/26
+Pr[ M = z ∧ K = 2] = Pr[ M = z]  Pr[K = 2] = 0.3  1/26
+Pertanto,
+Pr[C = B] = Pr[ M = a ∧ K = 1] + Pr[ M = z ∧ K = 2]
+= 0.7  1/26 + 0.3  1/26 = 1/26
+
+Esempio
+} Consideriamo lo Shift Cipher
+Qual è invece la probabilità che il messaggio in chiaro sia “a”, dato il cifrato B?
+Usando il teorema di Bayes, risulta:
+Pr[ M = a | C = B] = Pr[C = B | M = a] Pr[ M = a]
+Pr[C = B ]
+= Pr[C = B | M = a]  0.7
+1/26
+Ma Pr[C = B | M = a] = 1/26 perché, se M = a, l’unico modo per ottenere C = B è
+che K = 1 (che accade con prob. 1/26)
+Pertanto, Pr[ M = a | C = B] = 1/26 0.7 = 0.7
+1/26
+
+Ulteriore esempio
+} Ancora lo Shift Cipher
+}
+
+Sia data su M la distribuzione:
+Pr[M = kim] = 0.5,
+
+Pr[M = ann] = 0.2 e
+
+Pr[M = boo] = 0.3
+
+Qual è la probabilità che C = DQQ?
+Ci sono soltanto due possibilità: M = ann e K = 3, oppure M = boo e K = 2
+Pertanto,
+Pr[ C = DQQ] = Pr[M = ann ∧ K = 3] + Pr[M = boo ∧ K = 2]
+= 0.2  1/26 + 0.3 1/26 = 0.5  1/26
+= 1/2  1/26
+= 1/52
+
+Ulteriore esempio
+Similmente, usando il teorema di Bayes, risulta:
+Pr[ M = ann | C = DQQ] = Pr[C = DQQ | M = ann] Pr[ M = ann]
+Pr[C = DQQ]
+= 1/26  0.2 = 0.4
+1/52
+essendo Pr[C = DQQ | M = ann] = 1/26, dato che solo K = 3 produce C = DQQ.
+
+Segretezza perfetta
+} Scenario: Adv conosce
+
+la distribuzione di probabilità su M
+} lo schema di cifratura
+} non conosce la chiave k
+} può ascoltare/vedere la comunicazione
+}
+
+Per ottenere segretezza perfetta, l’osservazione del cifrato
+non dovrebbe fornire alcuna informazione aggiuntiva ad Adv
+sul messaggio in chiaro. Cioè:
+Il cifrato non dovrebbe rivelare ad Adv
+nulla in più al di là di ciò che già sa
+
+Segretezza perfetta
+Definizione 2.3. Uno schema di cifratura (Gen, Enc, Dec)
+con spazio dei messaggi M è perfettamente segreto se
+per ogni distribuzione di probabilità su M
+} per ogni messaggio
+} e per ogni cifrato
+per cui risulta Pr[C=c]>0, si ha:
+}
+
+Pr[ M = m | C = c] = Pr[ M = m]
+
+Definizione equivalente
+} Possiamo fornire una definizione equivalente richiedendo
+
+che la distribuzione di probabilità dei cifrati non dipenda
+dal messaggio in chiaro
+} Formalmente, per ogni
+
+e per ogni
+Pr[EncK(m) = c] = Pr[EncK(m’) = c]
+dove le prob sono calcolate sulle possibili scelte
+} della chiave k
+} dei bit casuali utilizzati da Enck()
+
+Rappresentazione grafica
+Se consideriamo messaggi e cifrati di lunghezza l(n), con n lunghezza della
+chiave, possiamo rappresentare la condizione con un grafo bipartito
+• aggiungiamo un arco, etichettato con chiave k, tra il nodo x e il nodo c se
+c= Enck(x)
+
+• x ed x’ hanno esattamente lo stesso
+insieme di nodi vicini
+
+Immagine ripresa da: B. Barak,
+Introduction to Theoretical Computer Science
+Capitolo 21
+
+Definizione equivalente
+} La precedente condizione implica
+è impossibile distinguere una cifratura di m da una di m’, poiché le
+distribuzioni sui cifrati sono le stesse
+} un cifrato non rivela alcuna informazione sul messaggio in chiaro
+}
+
+Lemma 2.5 Uno schema di cifratura (Gen, Enc, Dec) con
+spazio dei messaggi M è perfettamente segreto se e solo se
+per ogni 𝑚, 𝑚 ! ∈ 𝑀 ed ogni
+
+risulta:
+
+Pr[EncK(m) = c] = Pr[EncK(m’) = c]
+
+Dimostrazione
+}
+
+Proviamo che, se la condizione vale, allora lo schema è perfettamente
+segreto. Fissiamo una distribuzione su M e sia c tale che Pr[C = c] > 0.
+}
+
+se Pr[M = m] = 0, allora banalmente
+
+Pr[ M = m | C = c] = Pr[ C = c |M = m]  Pr[M = m]
+Pr[C = c]
+=0
+
+0
+
+Pr[ M = m | C = c] = Pr[M = m]
+}
+
+se Pr[M = m] > 0, invece, notiamo che
+Pr[C = c | M = m] = Pr[EncK(M) = c | M = m] = Pr[EncK(m) = c]
+
+Sia δc = Pr[EncK(m) = c]. Se la condizione del lemma vale, per ogni m’
+
+Dimostrazione
+risulta:
+Pr[EncK(m’) = c] = Pr[C = c | M = m’] = δc
+Applicando il teorema di Bayes,
+Pr[ M = m | C = c] = Pr[ C = c |M = m]  Pr[M = m]
+Pr[ C = c]
+
+= Pr[ C = c |M = m]  Pr[M = m]
+Pertanto lo
+schema è
+perfettamente
+segreto
+
+= δc  Pr[M = m]
+
+δc
+
+δc 
+= Pr[M = m]
+
+1
+
+Dimostrazione
+}
+
+Viceversa, sia lo schema perfettamente segreto. Sia M uniformemente
+distribuita. Per il teorema di Bayes, per ogni c tale che Pr[C = c] > 0 e per
+ogni m, possiamo scrivere
+Pr[ M = m | C = c] Pr[ C = c] = Pr[ C = c |M = m]  Pr[M = m]
+
+}
+
+La segretezza perfetta Pr[ M = m | C = c] = Pr[M = m] implica
+Pr[ M = m] Pr[ C = c] = Pr[ C = c |M = m]  Pr[M = m]
+ovvero
+Pr[ C = c] = Pr[ C = c |M = m]
+
+}
+
+Pertanto, per ogni m, m’ e per ogni c tale che Pr[C = c] > 0
+Pr[EncK(m) = c] = Pr[C = c] = Pr[EncK(m’) = c].
+
+Perfetta indistinguibilità
+} Possiamo dare ancora un’altra definizione di segretezza
+
+perfetta equivalente alle precedenti
+}
+
+basata su un esperimento che coinvolge Adv e un Challenger C
+
+} Informalmente
+
+Adv sceglie due messaggi in chiaro, m ed m’
+} C sceglie uniformemente a caso uno dei due e lo cifra usando
+una chiave k casuale
+} Il cifrato ottenuto c viene dato ad Adv
+} Adv dà in output una sua ipotesi su quale dei due è stato
+cifrato
+} Adv ha successo se la sua ipotesi è corretta
+}
+
+Perfetta indistinguibilità
+} Uno schema di cifratura è perfettamente indistinguibile se
+
+nessun Adv può avere successo con probabilità > ½
+}
+
+Osservazioni:
+un Adv che ipotizza a caso ha successo con probabilità ½ ,
+richiediamo che Adv non disponga di una strategia migliore
+} non poniamo alcun limite al potere computazionale di Adv
+}
+
+Esperimento
+Sia Π = (Gen, Enc, Dec) uno schema di cifratura con spazio dei messaggi M.
+Sia A un Adv (i.e., un algoritmo che mantiene uno stato)
+
+• A dà in output una coppia di messaggi m0, m1
+• C genera k tramite Gen() e sceglie uniformemente a caso il bit b in {0,1}
+• C calcola c
+
+EncK(mb), detto cifrato di sfida, e lo passa ad A
+
+• A dà in output un bit b’
+• L’output dell’esperimento è 1 se b’ = b, 0 altrimenti. Se l’output è 1, A ha
+successo.
+
+Definizione
+Definizione 2.6. Uno schema di cifratura (Gen, Enc, Dec)
+con spazio dei messaggi M è perfettamente indistinguibile
+se, per ogni A, risulta:
+Pr[
+= 1] = 1/2
+Risultato dell’esperimento
+
+È possibile dimostrare che vale il seguente
+
+Lemma 2.7. Uno schema di cifratura Π è perfettamente
+segreto se e solo se è perfettamente indistinguibile.
+
+Conclusione
+} Disponiamo di tre definizioni di segretezza perfetta
+
+equivalenti!
+per ogni distribuzione su M,
+per ogni 𝑚 ∈ 𝑀 e per ogni c
+tale che Pr[C = c] > 0
+Pr[ M = m | C = c] = Pr[ M = m]
+
+per ogni 𝑚, 𝑚′ ∈ 𝑀 ed ogni
+Pr[EncK(m) = c] = Pr[EncK(m’) = c]
+
+Per ogni Adv A,
+Pr[
+
+= 1] = 1/2
+
+
