@@ -1,0 +1,16 @@
+{
+  "mode": "encrypted",
+  "users": {
+    "bob": {
+      "type": "encrypted",
+      "password_b64": "Z0FBQUFBQm83MW1MQ0dzdVhpYTliZ3BZcEcxMXVWZ2NWcGxwa3NIM0daejlFMElIV1Q0ZVl4YjRwdFVneFNrNEQxanJFTmFOQ2FDM1c0Q2FvYWVlV2VnR2VqRlZVMHJLdHc9PQ=="
+    }
+  },
+  "kdf": {
+    "salt_b64": "ZaMkKZn02C2gZQc3tEhQNg==",
+    "n": 16384,
+    "r": 8,
+    "p": 1,
+    "dklen": 32
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "mode": "hashed",
+  "users": {
+    "alice": {
+      "algo": "scrypt",
+      "n": 16384,
+      "r": 8,
+      "p": 1,
+      "dklen": 64,
+      "salt_b64": "HR9elKoDYy5kFf5ba2ddtQ==",
+      "hash_b64": "CYzTrXHefKFnHDFSyr90m++vquyGP50Vgl3FnlJlCExvraKf8mwtikXXg2ZGLFvUNd+aJNpAT5I+ZhSJ/hwIwQ==",
+      "type": "hashed"
+    }
+  }
+}

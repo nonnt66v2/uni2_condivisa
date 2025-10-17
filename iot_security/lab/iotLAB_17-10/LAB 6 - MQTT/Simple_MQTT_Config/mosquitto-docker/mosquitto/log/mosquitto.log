@@ -1,0 +1,196 @@
+1760653042: mosquitto version 2.0.22 starting
+1760653042: Config loaded from /mosquitto/config/mosquitto.conf.
+1760653042: Opening ipv4 listen socket on port 1883.
+1760653042: Opening ipv6 listen socket on port 1883.
+1760653042: mosquitto version 2.0.22 running
+1760653509: New connection from ::1:60028 on port 1883.
+1760653509: New client connected from ::1:60028 as auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (p2, c1, k60).
+1760653509: No will message specified.
+1760653509: Sending CONNACK to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (0, 0)
+1760653509: Received SUBSCRIBE from auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653509: 	esp32/dht11 (QoS 0)
+1760653509: auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 0 esp32/dht11
+1760653509: Sending SUBACK to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653563: New connection from 172.18.0.1:33474 on port 1883.
+1760653563: New client connected from 172.18.0.1:33474 as ESP32C3-DHT11 (p2, c1, k15).
+1760653563: No will message specified.
+1760653563: Sending CONNACK to ESP32C3-DHT11 (0, 0)
+1760653563: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653563: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653568: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653568: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653569: Received PINGREQ from auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653569: Sending PINGRESP to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653573: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653573: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653578: Received PINGREQ from ESP32C3-DHT11
+1760653578: Sending PINGRESP to ESP32C3-DHT11
+1760653578: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653578: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653583: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653583: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653588: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653588: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653593: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653593: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653598: Received PINGREQ from ESP32C3-DHT11
+1760653598: Sending PINGRESP to ESP32C3-DHT11
+1760653598: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653598: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653609: New connection from 172.18.0.1:52356 on port 1883.
+1760653609: Client ESP32C3-DHT11 already connected, closing old connection.
+1760653609: New client connected from 172.18.0.1:52356 as ESP32C3-DHT11 (p2, c1, k15).
+1760653609: No will message specified.
+1760653609: Sending CONNACK to ESP32C3-DHT11 (0, 0)
+1760653609: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653609: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653614: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653614: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653619: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653619: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653624: Received PINGREQ from ESP32C3-DHT11
+1760653624: Sending PINGRESP to ESP32C3-DHT11
+1760653624: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653624: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653629: Received PINGREQ from auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653629: Sending PINGRESP to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653629: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653629: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653634: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653634: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653639: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653639: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653644: Received PINGREQ from ESP32C3-DHT11
+1760653644: Sending PINGRESP to ESP32C3-DHT11
+1760653644: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653644: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653649: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653649: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653654: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653654: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653659: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653659: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653664: Received PINGREQ from ESP32C3-DHT11
+1760653664: Sending PINGRESP to ESP32C3-DHT11
+1760653664: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653664: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653669: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653669: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653674: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653674: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653679: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653679: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653684: Received PINGREQ from ESP32C3-DHT11
+1760653684: Sending PINGRESP to ESP32C3-DHT11
+1760653684: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653684: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653689: Received PINGREQ from auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653689: Sending PINGRESP to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653689: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653689: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653694: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653694: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653699: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653699: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653704: Received PINGREQ from ESP32C3-DHT11
+1760653704: Sending PINGRESP to ESP32C3-DHT11
+1760653704: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653704: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653709: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653709: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653714: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653714: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653719: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653719: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653724: Received PINGREQ from ESP32C3-DHT11
+1760653724: Sending PINGRESP to ESP32C3-DHT11
+1760653724: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653724: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653729: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653729: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653734: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653734: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653739: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653739: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653744: Received PINGREQ from ESP32C3-DHT11
+1760653744: Sending PINGRESP to ESP32C3-DHT11
+1760653744: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653744: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653748: Received PINGREQ from auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653748: Sending PINGRESP to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653749: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653749: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653754: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653754: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653760: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653760: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653765: Received PINGREQ from ESP32C3-DHT11
+1760653765: Sending PINGRESP to ESP32C3-DHT11
+1760653765: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653765: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653770: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653770: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653775: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653775: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653780: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653780: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653785: Received PINGREQ from ESP32C3-DHT11
+1760653785: Sending PINGRESP to ESP32C3-DHT11
+1760653785: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653785: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653790: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653790: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653795: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653795: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653800: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653800: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653805: Received PINGREQ from ESP32C3-DHT11
+1760653805: Sending PINGRESP to ESP32C3-DHT11
+1760653805: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653805: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653809: Received PINGREQ from auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653809: Sending PINGRESP to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653810: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653810: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653815: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653815: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653820: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653820: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653825: Received PINGREQ from ESP32C3-DHT11
+1760653825: Sending PINGRESP to ESP32C3-DHT11
+1760653825: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653825: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653830: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653830: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653835: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653835: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653840: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653840: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653845: Received PINGREQ from ESP32C3-DHT11
+1760653845: Sending PINGRESP to ESP32C3-DHT11
+1760653845: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653845: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653850: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653850: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653855: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653855: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653860: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653860: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653865: Received PINGREQ from ESP32C3-DHT11
+1760653865: Sending PINGRESP to ESP32C3-DHT11
+1760653865: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653865: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653869: Received PINGREQ from auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653869: Sending PINGRESP to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062
+1760653872: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653872: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653877: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653877: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653882: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653882: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653887: Received PINGREQ from ESP32C3-DHT11
+1760653887: Sending PINGRESP to ESP32C3-DHT11
+1760653887: Received PUBLISH from ESP32C3-DHT11 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653887: Sending PUBLISH to auto-056AABB1-0E70-13AB-6233-AD2AFF8A8062 (d0, q0, r0, m0, 'esp32/dht11', ... (38 bytes))
+1760653891: mosquitto version 2.0.22 terminating
+1760653891: Saving in-memory database to /mosquitto/data//mosquitto.db.
